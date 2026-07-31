@@ -24,7 +24,8 @@ const Photo = () => {
         >
           <Image
             src="/assets/profilePic.png"
-            priority
+            fetchPriority="high"
+            loading="eager"
             quality={85}
             fill
             alt="Portrait of Youri Janssen"
