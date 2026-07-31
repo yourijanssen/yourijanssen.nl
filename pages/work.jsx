@@ -1,8 +1,8 @@
 import Head from "next/head";
-import WorkPage from "@/pages/pageComponents/WorkPage";
-import {serverSideTranslations} from "next-i18next/serverSideTranslations";
+import WorkPage from "@/components/page-components/WorkPage";
+import {serverSideTranslations} from "next-i18next/pages/serverSideTranslations";
 
-export const getServerSideProps = async (context) => {
+export const getStaticProps = async (context) => {
 	const locale = context.locale || 'en';
 
 	return {

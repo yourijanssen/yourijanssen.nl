@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import {useTranslation} from "next-i18next";
+import {useTranslation} from "next-i18next/pages";
 
 const links = [
   {

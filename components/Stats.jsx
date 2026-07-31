@@ -1,17 +1,20 @@
 import CountUp from "react-countup";
-import {useTranslation} from "next-i18next";
+import {useTranslation} from "next-i18next/pages";
 
 const stats = [
   {
-    num: 2,
+    num: 4,
+    suffix: "+",
     textKey: "yearsOfExperience",
   },
   {
-    num: 6,
+    num: 20,
+    suffix: "+",
     textKey: "projectsCompleted",
   },
   {
-    num: 5,
+    num: 10,
+    suffix: "+",
     textKey: "technologiesMastered",
   },
 ];
@@ -31,6 +34,7 @@ const Stats = () => {
                   >
                     <CountUp
                         end={item.num}
+                        suffix={item.suffix}
                         duration={5}
                         delay={0}
                         className="text-4xl xl:text-6xl font-extrabold text-text-light dark:text-text-dark"

@@ -1,9 +1,9 @@
 import Head from "next/head";
 
-import ServicesPage from "@/pages/pageComponents/ServicesPage";
-import {serverSideTranslations} from "next-i18next/serverSideTranslations";
+import ServicesPage from "@/components/page-components/ServicesPage";
+import {serverSideTranslations} from "next-i18next/pages/serverSideTranslations";
 
-export const getServerSideProps = async (context) => {
+export const getStaticProps = async (context) => {
 	const locale = context.locale || 'en';
 
 	return {
@@ -26,4 +26,3 @@ const Services = (...props) => {
 };
 
 export default Services;
-

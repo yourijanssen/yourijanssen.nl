@@ -1,5 +1,6 @@
 import {motion} from "framer-motion";
-import {useTranslation} from "next-i18next";
+import {Trans} from "react-i18next";
+import {useTranslation} from "next-i18next/pages";
 
 
 /**
@@ -73,10 +74,9 @@ const ServicesPage = () => {
 									{translate(service.titleKey)}
 								</h2>
 								{/* description */}
-								<p
-									className="text-text-light/60 dark:text-text-dark/60"
-									dangerouslySetInnerHTML={{__html: translate(service.descriptionKey)}}
-								></p>
+								<p className="text-text-light/60 dark:text-text-dark/60">
+									<Trans i18nKey={service.descriptionKey} components={{br: <br/>}}/>
+								</p>
 								{/* border */}
 								<div className="border-b border-dark/80 dark:border-light/80 w-full"></div>
 							</div>
@@ -89,5 +89,3 @@ const ServicesPage = () => {
 };
 
 export default ServicesPage;
-
-

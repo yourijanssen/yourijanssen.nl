@@ -11,14 +11,9 @@ import {
 	SelectTrigger,
 	SelectValue,
 } from "@/components/ui/select";
-import {FaPhoneAlt, FaEnvelope, FaMapMarkerAlt} from "react-icons/fa";
+import {FaEnvelope, FaMapMarkerAlt} from "react-icons/fa";
 
 const info = [
-	{
-		icon: <FaPhoneAlt/>,
-		title: "Phone",
-		description: "(+31) 6 47 22 39 84",
-	},
 	{
 		icon: <FaEnvelope/>,
 		title: "Email",
@@ -32,7 +27,7 @@ const info = [
 ];
 
 import {motion} from "framer-motion";
-import {useTranslation} from "next-i18next";
+import {useTranslation} from "next-i18next/pages";
 
 const ContactPage = ({t}) => {
 	const {t: translate} = useTranslation('common');
@@ -63,7 +58,6 @@ const ContactPage = ({t}) => {
 						{/*      <Input type="firstname" placeholder="Firstname" />*/}
 						{/*      <Input type="lastname" placeholder="Lastname" />*/}
 						{/*      <Input type="email" placeholder="Email address" />*/}
-						{/*      <Input type="phone" placeholder="Phone number" />*/}
 						{/*    </div>*/}
 						{/*    /!* select *!/*/}
 						{/*    <Select>*/}

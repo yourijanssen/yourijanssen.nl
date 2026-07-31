@@ -1,9 +1,9 @@
 
 import Head from "next/head";
-import ResumePage from "@/pages/pageComponents/ResumePage";
-import {serverSideTranslations} from "next-i18next/serverSideTranslations";
+import ResumePage from "@/components/page-components/ResumePage";
+import {serverSideTranslations} from "next-i18next/pages/serverSideTranslations";
 
-export const getServerSideProps = async (context) => {
+export const getStaticProps = async (context) => {
 	const locale = context.locale || 'en';
 
 	return {
@@ -26,4 +26,3 @@ const Resume = ({...props}) => {
 
 
 export default Resume;
-

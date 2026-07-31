@@ -1,9 +1,9 @@
 import Head from "next/head";
-import ContactPage from "@/pages/pageComponents/ContactPage";
-import {serverSideTranslations} from "next-i18next/serverSideTranslations";
+import ContactPage from "@/components/page-components/ContactPage";
+import {serverSideTranslations} from "next-i18next/pages/serverSideTranslations";
 
-export const getServerSideProps = async (context) => {
-	const locale = context.locale; // Default to 'en' if locale is not available
+export const getStaticProps = async (context) => {
+	const locale = context.locale || 'en';
 
 	return {
 		props: {

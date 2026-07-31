@@ -5,7 +5,7 @@ import Header from '@/components/Header';
 import PageTransition from '@/components/PageTransition';
 import { DarkModeProvider } from '@/context/DarkModeContext';
 import nextI18NextConfig from '../next-i18next.config';
-import {appWithTranslation} from "next-i18next";
+import {appWithTranslation} from "next-i18next/pages";
 
 function App({ Component, pageProps }) {
 	return (

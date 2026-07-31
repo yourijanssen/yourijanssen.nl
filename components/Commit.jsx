@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import {useTranslation} from "next-i18next";
+import {useTranslation} from "next-i18next/pages";
 
 export const Commit = () => {
 	const [commitDate, setCommitDate] = useState('');
@@ -7,20 +7,33 @@ export const Commit = () => {
 
 
 	useEffect(() => {
+		const controller = new AbortController();
+
+		/** Loads immutable build metadata without calling a server-side process. */
 		const fetchCommitDate = async () => {
-			const response = await fetch('/commit-date.json');
-			const data = await response.json();
-			setCommitDate(data.commitDate);
+			try {
+				const response = await fetch('/commit-date.json', {signal: controller.signal});
+				if (!response.ok) return;
+
+				const data = await response.json();
+				if (typeof data.commitDate === 'string') setCommitDate(data.commitDate);
+			} catch (error) {
+				if (error.name !== 'AbortError') console.error('Unable to load commit metadata');
+			}
 		};
 
-		fetchCommitDate();
+		void fetchCommitDate();
+		return () => controller.abort();
 	}, []);
 
 	return (
 		<>
 			<div className="container mx-auto xl:text-left">
-				<p className="text-text-light dark:text-text-dark">
-					{t('commit')} {commitDate}</p>
+				{commitDate ? (
+					<p className="text-text-light dark:text-text-dark">
+						{t('commit')} {commitDate}
+					</p>
+				) : null}
 			</div>
 		</>
 	)

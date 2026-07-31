@@ -5,7 +5,7 @@ import DarkModeToggle from "@/components/DarkModeToggle";
 import Nav from "@/components/Nav";
 import { motion } from "framer-motion";
 import LocaleSwitcher from "@/components/LocaleSwitcher";
-import {useTranslation} from "next-i18next";
+import {useTranslation} from "next-i18next/pages";
 
 
 const Header = () => {

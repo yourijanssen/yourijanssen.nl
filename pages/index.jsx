@@ -5,12 +5,23 @@ import Stats from "@/components/Stats";
 import {Commit} from '@/components/Commit';
 import { motion } from "framer-motion";
 import Head from "next/head";
-import {useTranslation} from 'next-i18next';
-import {serverSideTranslations} from "next-i18next/serverSideTranslations";
-import ContactPage from "@/pages/pageComponents/ContactPage";
-import ServicesPage from "@/pages/pageComponents/ServicesPage";
-import WorkPage from "@/pages/pageComponents/WorkPage";
-import ResumePage from "@/pages/pageComponents/ResumePage";
+import dynamic from "next/dynamic";
+import {useTranslation} from 'next-i18next/pages';
+import {serverSideTranslations} from "next-i18next/pages/serverSideTranslations";
+import ContactPage from "@/components/page-components/ContactPage";
+import ServicesPage from "@/components/page-components/ServicesPage";
+
+/** Defers below-the-fold interactive sections so the landing hero can paint first. */
+const ResumePage = dynamic(() => import("@/components/page-components/ResumePage"), {
+	ssr: false,
+	loading: () => <section className="min-h-[80vh]" aria-hidden="true" />,
+});
+
+/** Defers the Swiper project gallery until after the initial page content is ready. */
+const WorkPage = dynamic(() => import("@/components/page-components/WorkPage"), {
+	ssr: false,
+	loading: () => <section className="min-h-[80vh]" aria-hidden="true" />,
+});
 
 const Home = () => {
 	const {t} = useTranslation('common');
@@ -72,8 +83,8 @@ const Home = () => {
 	);
 };
 
-export const getServerSideProps = async (context) => {
-	const locale = context.locale; // Default to 'en' if locale is not available
+export const getStaticProps = async (context) => {
+	const locale = context.locale || 'en';
 
 	return {
 		props: {

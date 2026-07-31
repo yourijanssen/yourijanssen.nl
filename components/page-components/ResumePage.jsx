@@ -51,10 +51,6 @@ const about = {
 			fieldValue: "Youri Janssen",
 		},
 		{
-			fieldName: "Phone",
-			fieldValue: "(+31) 6 47 22 39 84",
-		},
-		{
 			fieldName: "Experience",
 			fieldValue: "experienceValue",
 		},
@@ -133,31 +129,26 @@ const education = {
 			institution: "HVA",
 			degree: "Software Development - Associate Degree",
 			duration: "2022 - 2024",
-			file:"/assets/HBO Associate Degree Software Development - EN.pdf",
 		},
 		{
 			institution: "HKU",
 			degree: "Art & Economics - Bachelor of Arts",
 			duration: "2016 - 2021",
-			file: "/assets/HBO Bachelor Kunst en Economie (Art and Economics).pdf",
 		},
 		{
 			institution: "HKU",
 			degree: "Art & Economics - Propaedeutic year",
 			duration: "2017",
-			file: "/assets/HBO Bachelor Kunst en Economie Propedeuse bachelor (Art and Economics).pdf",
 		},
 		{
 			institution: "College voor Toetsen en Examens",
 			degree: "Voorbereidend wetenschappelijk onderwijs (VWO)",
 			duration: "2015",
-			file: "/assets/Voorbereidend wetenschappelijk onderwijs (staatsexamen).pdf",
 		},
 		{
 			institution: "Scholengemeenschap Oost/Zuidoost",
 			degree: "Hoger algemeen voortgezet onderwijs (HAVO)",
 			duration: "2009 - 2014",
-			file: "/assets/Hoger algemeen voortgezet onderwijs.pdf",
 		},
 
 	],
@@ -652,7 +643,6 @@ import {
 
 import {ScrollArea} from "@/components/ui/scroll-area";
 import {motion} from "framer-motion";
-import {DegreeDownload} from "@/components/Downloads";
 import {VscVscode} from "react-icons/vsc";
 import {DiIntellij, DiLinux, DiMongodb, DiScrum} from "react-icons/di";
 import {GrMysql} from "react-icons/gr";
@@ -669,7 +659,7 @@ import {BiTerminal} from "react-icons/bi";
 import Image from "next/image";
 import TypingAnimation from "@/components/TypingAnimation";
 import BarExample from "@/components/bar";
-import {useTranslation} from "next-i18next";
+import {useTranslation} from "next-i18next/pages";
 
 const ResumePage = ({t}) => {
 	const {t: translate} = useTranslation('common');
@@ -777,9 +767,9 @@ const ResumePage = ({t}) => {
 																className="w-[6px] h-[6px] rounded-full bg-accent"></span>
 															<p className="text-text-light/80 dark:text-text-dark/60">{translate(item.institution)}</p>
 														</div>
-														<div className="flex flex-col xl:flex-row items-center gap-8">
-															<DegreeDownload url={item.file}/>
-														</div>
+												<p className="mt-4 text-sm text-text-light/70 dark:text-text-dark/70">
+													{translate("credentialAvailableOnRequest")}
+												</p>
 													</li>
 												);
 											})}
@@ -877,7 +867,7 @@ const ResumePage = ({t}) => {
 													className="flex items-center justify-center xl:justify-start gap-4"
 												>
 												<span
-													className="text-text-light/60 dark:text-text-dark/60">{item.fieldName}:</span>
+													className="text-text-light/60 dark:text-text-dark/60">{translate(item.fieldName)}:</span>
 											<span
 													className="text-xl text-text-light dark:text-text-dark">{translate(item.fieldValue)}</span>
 												</li>

@@ -1,16 +1,23 @@
 const fs = require('fs');
-const { execSync } = require('child_process');
+const path = require('path');
+const {execFileSync} = require('child_process');
 
+const outputPath = path.join(process.cwd(), 'public', 'commit-date.json');
+
+/** Reads the last commit timestamp once during the trusted build process. */
 const getLastCommitDate = () => {
 	try {
-		return execSync('git log -1 --format=%cd', { encoding: 'utf-8' }).trim();
+		return execFileSync('git', ['log', '-1', '--format=%cI'], {
+			encoding: 'utf-8',
+			stdio: ['ignore', 'pipe', 'pipe'],
+		}).trim();
 	} catch (error) {
 		console.error('Error fetching last commit date:', error.message);
-		return 'N/A';
+		return null;
 	}
 };
 
 const commitDate = getLastCommitDate();
-const data = JSON.stringify({ commitDate }, null, 2);
+const data = `${JSON.stringify({commitDate}, null, 2)}\n`;
 
-fs.writeFileSync('public/commit-date.json', data);
+fs.writeFileSync(outputPath, data, 'utf8');

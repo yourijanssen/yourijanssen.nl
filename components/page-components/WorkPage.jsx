@@ -12,7 +12,7 @@ import {
 import Link from "next/link";
 import Image from "next/image";
 import WorkSliderBtns from "@/components/WorkSliderBtns";
-import {useTranslation} from "next-i18next";
+import {useTranslation} from "next-i18next/pages";
 
 const projects = [
 	{
