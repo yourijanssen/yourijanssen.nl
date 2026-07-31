@@ -8,7 +8,6 @@ const LocaleSwitcher = () => {
 
 	const handleChange = (event) => {
 		const newLocale = event.target.value;
-		console.log(`Switching to locale: ${newLocale}`);
 		router.push(asPath, asPath, { locale: newLocale });
 	};
 

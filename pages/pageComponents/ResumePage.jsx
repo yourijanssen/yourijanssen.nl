@@ -25,8 +25,6 @@ import {
 	SiApachemaven,
 	SiMariadb,
 	SiGimp,
-	SiAdobepremierepro,
-	SiAdobephotoshop,
 	SiExpress,
 	SiEslint,
 	SiMocha,
@@ -58,7 +56,7 @@ const about = {
 		},
 		{
 			fieldName: "Experience",
-			fieldValue: "2+ Years",
+			fieldValue: "experienceValue",
 		},
 		{
 			fieldName: "Nationality",
@@ -66,7 +64,7 @@ const about = {
 		},
 		{
 			fieldName: "Status",
-			fieldValue: "Student / Freelancing",
+			fieldValue: "statusValue",
 		},
 		{
 			fieldName: "Email",
@@ -87,16 +85,40 @@ const experience = {
 		"experiencedes",
 	items: [
 		{
-			company: "Freelancer: Custom web pages",
-			position: "Full-stack Developer",
-			duration: "2024 - Present",
+			company: "WOW media",
+			position: "phpDeveloper",
+			duration: "wowDuration",
 		},
 		{
-			company: "IRP/BIMKeeper: Web-based building management system",
-			position: "Full-stack Developer",
-			duration: "2023 - Present",
+			company: "DICTU",
+			position: "iamEngineer",
+			duration: "dictuDuration",
+		},
+		{
+			company: "Working Talent",
+			position: "devopsTraineeship",
+			duration: "workingTalentDuration",
+		},
+		{
+			company: "IRP",
+			position: "fullStackDeveloper",
+			duration: "irpDuration",
 		},
 
+	],
+};
+
+// Certifications confirmed on the LinkedIn profile as of 31 July 2026.
+const certifications = {
+	icon: "/assets/resume/badge.svg",
+	title: "certifications",
+	description: "certificationsdes",
+	items: [
+		{
+			issuer: "Scrum.org",
+			name: "Professional Scrum Master™ I (PSM I)",
+			issued: "psmIssued",
+		},
 	],
 };
 
@@ -363,13 +385,13 @@ const skills = {
 			link: "https://en.wikipedia.org/wiki/GIMP",
 		},
 		{
-			icon: <SiAdobepremierepro/>,
+			icon: <TbBrandAdobePremiere/>,
 			name: "Premier Pro",
 			year: 2020,
 			link: "https://en.wikipedia.org/wiki/Adobe_Premiere_Pro",
 		},
 		{
-			icon: <SiAdobephotoshop/>,
+			icon: <TbBrandAdobePhotoshop/>,
 			name: "Photoshop",
 			year: 2020,
 			link: "https://en.wikipedia.org/wiki/Adobe_Photoshop",
@@ -635,7 +657,12 @@ import {VscVscode} from "react-icons/vsc";
 import {DiIntellij, DiLinux, DiMongodb, DiScrum} from "react-icons/di";
 import {GrMysql} from "react-icons/gr";
 import {GiJasmine} from "react-icons/gi";
-import {TbBrandThreejs, TbFileTypeXml} from "react-icons/tb";
+import {
+	TbBrandAdobePhotoshop,
+	TbBrandAdobePremiere,
+	TbBrandThreejs,
+	TbFileTypeXml,
+} from "react-icons/tb";
 import {BsAndroid, BsWindows} from "react-icons/bs";
 import {PiMicrosoftTeamsLogo} from "react-icons/pi";
 import {BiTerminal} from "react-icons/bi";
@@ -666,6 +693,7 @@ const ResumePage = ({t}) => {
 							<TabsTrigger value="experience">{translate("experienceTab")}</TabsTrigger>
 							<TabsTrigger value="about">{translate("aboutTab")}</TabsTrigger>
 							<TabsTrigger value="education">{translate("educationTab")}</TabsTrigger>
+							<TabsTrigger value="certifications">{translate("certificationsTab")}</TabsTrigger>
 							<TabsTrigger value="skills">{translate("skillsTab")}</TabsTrigger>
 							<TabsTrigger value="courses">{translate("coursesTab")}</TabsTrigger>
 						</TabsList>
@@ -687,9 +715,9 @@ const ResumePage = ({t}) => {
 														key={index}
 														className="dark:bg-[#232329] bg-[#CCCCCC] h-[184px] py-6 px-10 rounded-xl flex flex-col justify-center items-center lg:items-start gap-1 "
 													>
-														<span className="text-accent">{item.duration}</span>
+														<span className="text-accent">{translate(item.duration)}</span>
 														<h3 className="text-xl max-w-[260px] min-h-[60px] text-center lg:text-left text-text-light/80 dark:text-text-dark">
-															{item.position}
+															{translate(item.position)}
 														</h3>
 														<div className="flex items-center gap-3">
 															{/* dot */}
@@ -702,6 +730,25 @@ const ResumePage = ({t}) => {
 											})}
 										</ul>
 									</ScrollArea>
+								</div>
+							</TabsContent>
+
+							{/* certifications */}
+							<TabsContent value="certifications" className="w-full">
+								<div className="flex flex-col gap-[30px] text-center xl:text-left">
+									<h3 className="text-4xl font-bold text-text-light dark:text-text-dark">{translate(certifications.title)}</h3>
+									<p className="max-w-[600px] text-text-light dark:text-text-dark mx-auto xl:mx-0">
+										{translate(certifications.description)}
+									</p>
+									<ul className="grid grid-cols-1 lg:grid-cols-2 gap-[30px]">
+										{certifications.items.map((item) => (
+											<li key={item.name} className="dark:bg-[#232329] bg-[#CCCCCC] h-[184px] py-6 px-10 rounded-xl flex flex-col justify-center items-center lg:items-start gap-1">
+												<span className="text-accent">{translate(item.issued)}</span>
+												<h3 className="text-xl text-center lg:text-left text-text-light/80 dark:text-text-dark">{item.name}</h3>
+												<p className="text-text-light/80 dark:text-text-dark/60">{item.issuer}</p>
+											</li>
+										))}
+									</ul>
 								</div>
 							</TabsContent>
 
@@ -831,8 +878,8 @@ const ResumePage = ({t}) => {
 												>
 												<span
 													className="text-text-light/60 dark:text-text-dark/60">{item.fieldName}:</span>
-													<span
-														className="text-xl text-text-light dark:text-text-dark">{item.fieldValue}</span>
+											<span
+													className="text-xl text-text-light dark:text-text-dark">{translate(item.fieldValue)}</span>
 												</li>
 											);
 										})}

@@ -16,6 +16,7 @@ import {useTranslation} from "next-i18next";
 
 const projects = [
 	{
+		id: "bim-builder",
 		num: "01",
 		category: "bim",
 		title: "",
@@ -28,6 +29,7 @@ const projects = [
 		github: "",
 	},
 	{
+		id: "ticket-system",
 		num: "02 ",
 		category: "ticket",
 		title: "",
@@ -143,9 +145,9 @@ const projects = [
 								onSlideChange={handleSlideChange}
 								loop={true}  // Enable loop for cyclic navigation
 							>
-								{projects.map((project, index) => {
+								{projects.map((project) => {
 									return (
-										<SwiperSlide key={index} className="w-full">
+										<SwiperSlide key={project.id} className="w-full">
 											<div
 												className="h-[460px] relative group flex justify-center items-center bg-pink-50/20">
 												{/* overlay */}
@@ -157,7 +159,8 @@ const projects = [
 														src={project.image}
 														fill
 														className="object-cover"
-														alt=""
+														alt={translate(project.category)}
+														sizes="(max-width: 1280px) 100vw, 50vw"
 													/>
 												</div>
 											</div>

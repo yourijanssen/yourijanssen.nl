@@ -65,7 +65,7 @@ const Home = () => {
 				</section>
 				<ResumePage t={t}/>
 				<WorkPage t={t}/>
-				<ServicesPage t={t}/>
+				<ServicesPage/>
 				<ContactPage t={t}/>
 			</motion.section>
 		</>
@@ -73,8 +73,6 @@ const Home = () => {
 };
 
 export const getServerSideProps = async (context) => {
-	console.log('Context:', context); // Check if `locale` is present
-
 	const locale = context.locale; // Default to 'en' if locale is not available
 
 	return {

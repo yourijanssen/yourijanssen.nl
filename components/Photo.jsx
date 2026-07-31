@@ -25,9 +25,9 @@ const Photo = () => {
           <Image
             src="/assets/profilePic.png"
             priority
-            quality={100}
+            quality={85}
             fill
-            alt=""
+            alt="Portrait of Youri Janssen"
             className="object-contain"
             sizes="(max-width: 768px) 298px, (max-width: 1280px) 498px, 498px"
           />

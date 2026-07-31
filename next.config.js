@@ -15,7 +15,10 @@ const nextConfig = {
         defaultLocale: 'nl',
       },
     ],
-  },
+	},
+	images: {
+		qualities: [75, 85],
+	},
 };
 
 module.exports = nextConfig

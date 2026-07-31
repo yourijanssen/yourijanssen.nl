@@ -1,8 +1,8 @@
-import { Html, Head, Main, NextScript } from "next/document";
+import NextDocument, { Html, Head, Main, NextScript } from "next/document";
 
-export default function Document() {
+export default function Document({ locale }) {
   return (
-    <Html>
+    <Html lang={locale ?? "en"}>
       <Head />
       <body>
         <Main />
@@ -11,3 +11,15 @@ export default function Document() {
     </Html>
   );
 }
+
+/**
+ * Supplies the active locale to the root HTML element for accessibility and SEO.
+ */
+Document.getInitialProps = async (context) => {
+  const initialProps = await NextDocument.getInitialProps(context);
+
+  return {
+    ...initialProps,
+    locale: context.locale,
+  };
+};

@@ -1,5 +1,4 @@
 import {motion} from "framer-motion";
-import PropTypes from "prop-types";
 import {useTranslation} from "next-i18next";
 
 
@@ -36,7 +35,7 @@ const servicesPage = [
  *
  * @returns {JSX.Element} Services component.
  */
-const ServicesPage = ({t}) => {
+const ServicesPage = () => {
 	const {t: translate} = useTranslation('common');
 
 	return (
@@ -89,12 +88,6 @@ const ServicesPage = ({t}) => {
 	);
 };
 
-// Define PropTypes for the component to validate the props
-ServicesPage.propTypes = {
-	t: PropTypes.func.isRequired, // Expect `t` to be a function
-};
-
 export default ServicesPage;
-
 
 

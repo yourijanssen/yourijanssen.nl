@@ -3,8 +3,6 @@ import ContactPage from "@/pages/pageComponents/ContactPage";
 import {serverSideTranslations} from "next-i18next/serverSideTranslations";
 
 export const getServerSideProps = async (context) => {
-	console.log('Context:', context); // Check if `locale` is present
-
 	const locale = context.locale; // Default to 'en' if locale is not available
 
 	return {
