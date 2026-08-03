@@ -6,4 +6,6 @@ module.exports = {
 		locales: ['en', 'nl'],
 	},
 	localePath: path.resolve('./public/locales'),
+	// Reload translation resources during development so edits appear without restarting Next.js.
+	reloadOnPrerender: process.env.NODE_ENV === 'development',
 };

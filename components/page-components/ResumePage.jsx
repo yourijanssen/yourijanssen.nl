@@ -127,27 +127,27 @@ const education = {
 	items: [
 		{
 			institution: "HVA",
-			degree: "Software Development - Associate Degree",
+			degree: "associateSoftwareDevelopment",
 			duration: "2022 - 2024",
 		},
 		{
 			institution: "HKU",
-			degree: "Art & Economics - Bachelor of Arts",
+			degree: "bachelorArtsEconomics",
 			duration: "2016 - 2021",
 		},
 		{
 			institution: "HKU",
-			degree: "Art & Economics - Propaedeutic year",
+			degree: "propaedeuticArtsEconomics",
 			duration: "2017",
 		},
 		{
-			institution: "College voor Toetsen en Examens",
-			degree: "Voorbereidend wetenschappelijk onderwijs (VWO)",
+			institution: "examBoard",
+			degree: "vwoDegree",
 			duration: "2015",
 		},
 		{
 			institution: "Scholengemeenschap Oost/Zuidoost",
-			degree: "Hoger algemeen voortgezet onderwijs (HAVO)",
+			degree: "havoDegree",
 			duration: "2009 - 2014",
 		},
 

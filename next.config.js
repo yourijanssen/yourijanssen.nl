@@ -5,7 +5,8 @@ const nextConfig = {
   i18n: {
     locales: ['en', 'nl'],
     defaultLocale: 'en',
-    domains: [
+		// Domain-based locale routing is production-only; locally, path locales prevent hydration mismatches.
+    domains: process.env.NODE_ENV === 'production' ? [
       {
         domain: 'yourijanssen.online',
         defaultLocale: 'en',
@@ -14,7 +15,7 @@ const nextConfig = {
         domain: 'yourijanssen.nl',
         defaultLocale: 'nl',
       },
-    ],
+    ] : undefined,
 	},
 	images: {
 		qualities: [75, 85],

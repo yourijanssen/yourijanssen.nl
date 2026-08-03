@@ -3,10 +3,13 @@
 import React from 'react';
 import { FiDownload } from 'react-icons/fi';
 import {Button} from "@/components/ui/button";
+import {useTranslation} from "next-i18next/pages";
 
 const CVUrl = '/assets/CV-Youri.pdf';
 
 const CVDownload= () => {
+	const {t} = useTranslation('common');
+
 	const handleDownload = () => {
 		const anchor = document.createElement('a');
 		anchor.href = CVUrl;
@@ -21,7 +24,7 @@ const CVDownload= () => {
 			className="uppercase flex items-center gap-2"
 			onClick={handleDownload}
 		>
-			<span>Download CV</span>
+			<span>{t('downloadCV')}</span>
 			<FiDownload className="text-xl" />
 		</Button>
 	);

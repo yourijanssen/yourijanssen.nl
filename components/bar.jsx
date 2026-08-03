@@ -9,6 +9,7 @@ import {
 	Tooltip,
 	Legend,
 } from 'chart.js';
+import {useTranslation} from "next-i18next/pages";
 
 // Register the required components
 ChartJS.register(
@@ -20,27 +21,27 @@ ChartJS.register(
 	Legend
 );
 
-const backend = {
+const backend = (datasetLabel) => ({
 	labels: ['PostgreSQL', 'MongoDB', 'MariaDB', 'Mysql', 'Node.js', 'Spring MVC', 'Spring Boot',],
 	datasets: [{
-		label: '# of Votes',
+		label: datasetLabel,
 		data: [4, 5, 12, 20, 20, 13, 5],
 		backgroundColor: '#189EDA', // Single color for all bars
 		borderColor: '#189EDA',
 		borderWidth: 1
 	}]
-};
+});
 
-const frontend = {
+const frontend = (datasetLabel) => ({
 	labels: ['Stylus', 'Next', 'React', 'Angular', 'Type/Javascript', 'CSS', 'Tailwind', 'Three.js'],
 	datasets: [{
-		label: '# of Votes',
+		label: datasetLabel,
 		data: [4, 5, 19, 20, 20, 19, 5, 5],
 		backgroundColor: '#189EDA', // Single color for all bars
 		borderColor: '#189EDA',
 		borderWidth: 1
 	}]
-};
+});
 
 const options = {
 	maintainAspectRatio: false,
@@ -87,23 +88,25 @@ const options = {
 	},
 };
 
-const BarExample = () => (
-	<>
+const BarExample = () => {
+	const {t} = useTranslation('common');
+
+	return <>
 		<div style={{maxWidth: '800px'}}>
 			<div style={{marginBottom: '20px'}}>
-				<h2 className="text-text-light dark:text-text-dark">Current Backend Skills:</h2>
+				<h2 className="text-text-light dark:text-text-dark">{t('currentBackendSkills')}</h2>
 				<div style={{height: '300px'}}>
-					<Bar data={backend} options={options}/>
+					<Bar data={backend(t('proficiency'))} options={options}/>
 				</div>
 			</div>
 			<div>
-				<h2 className="text-text-light dark:text-text-dark">Current Frontend Skills</h2>
+				<h2 className="text-text-light dark:text-text-dark">{t('currentFrontendSkills')}</h2>
 				<div style={{height: '300px'}}>
-					<Bar data={frontend} options={options}/>
+					<Bar data={frontend(t('proficiency'))} options={options}/>
 				</div>
 			</div>
 		</div>
-	</>
-);
+	</>;
+};
 
 export default BarExample;

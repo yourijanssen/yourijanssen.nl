@@ -1,6 +1,7 @@
 import Head from "next/head";
 import WorkPage from "@/components/page-components/WorkPage";
 import {serverSideTranslations} from "next-i18next/pages/serverSideTranslations";
+import {useTranslation} from "next-i18next/pages";
 
 export const getStaticProps = async (context) => {
 	const locale = context.locale || 'en';
@@ -13,11 +14,12 @@ export const getStaticProps = async (context) => {
 };
 
 const Work = ({...props}) => {
+	const {t} = useTranslation('common');
 
 	return (
 		<>
 			<Head>
-				<title>Youri Janssen | Work</title>
+				<title>{`Youri Janssen | ${t('workPageTitle')}`}</title>
 			</Head>
 			<WorkPage {...props}/>
 		</>

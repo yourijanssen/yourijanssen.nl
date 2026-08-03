@@ -1,11 +1,11 @@
 import { useTranslation } from 'next-i18next/pages'
 
 export const Footer = () => {
-	const { t } = useTranslation('footer')
+	const { t } = useTranslation('common')
 
 	return (
 		<footer>
-			<p>{t('description')}</p>
+			<p>{t('footerDescription')}</p>
 		</footer>
 	)
 }

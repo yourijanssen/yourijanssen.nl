@@ -5,26 +5,27 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { CiMenuFries } from "react-icons/ci";
 import {useState} from "react";
+import {useTranslation} from "next-i18next/pages";
 
 const links = [
   {
-    name: "home",
+    nameKey: "home",
     path: "/",
   },
   {
-    name: "services",
+    nameKey: "services",
     path: "/services",
   },
   {
-    name: "resume",
+    nameKey: "resume",
     path: "/resume",
   },
   {
-    name: "work",
+    nameKey: "work",
     path: "/work",
   },
   {
-    name: "contact",
+    nameKey: "contact",
     path: "/contact",
   },
 ];
@@ -32,6 +33,7 @@ const links = [
 const MobileNav = () => {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
+  const {t} = useTranslation('common');
 
   const closeSheet = () => {
     setTimeout(() => {
@@ -42,11 +44,14 @@ const MobileNav = () => {
   return (
       <Sheet open={isOpen} onOpenChange={setIsOpen}>
         <SheetTrigger asChild>
-          <button className="flex justify-center items-center">
+          <button className="flex justify-center items-center" aria-label={t('openMenu')}>
             <CiMenuFries className="text-[32px] text-accent" />
           </button>
         </SheetTrigger>
-        <SheetContent className="flex flex-col bg-primary-light dark:bg-primary-dark">
+        <SheetContent
+          className="flex flex-col bg-primary-light dark:bg-primary-dark"
+          closeLabel={t('closeMenu')}
+        >
           {/* logo */}
           <div className="mt-32 mb-40 text-center text-2xl bg-light dark:bg-dark">
             <Link href="/">
@@ -67,7 +72,7 @@ const MobileNav = () => {
                     } text-xl capitalize hover:text-accent transition-all`}
                     onClick={closeSheet}
                 >
-                  {link.name}
+                  {t(link.nameKey)}
                 </Link>
             ))}
           </nav>

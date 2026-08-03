@@ -2,7 +2,7 @@ import {motion} from "framer-motion";
 import React, {useState} from "react";
 import {Swiper, SwiperSlide} from "swiper/react";
 import "swiper/css";
-import {BsArrowUpRight, BsGithub} from "react-icons/bs";
+import {BsArrowUpRight} from "react-icons/bs";
 import {
 	Tooltip,
 	TooltipContent,
@@ -38,6 +38,39 @@ const projects = [
 		stack: [{name: "Spring MVC"}, {name: "React"}, {name: "MariaDB"}],
 		image: "/assets/work/ticketSystem.png",
 		live: "",
+		github: "",
+	},
+	{
+		id: "leroy-grau",
+		num: "03",
+		category: "leroyGrau",
+		title: "Leroygrau.nl",
+		description: "leroyGrauDescription",
+		stack: [{name: "websiteManagement"}],
+		image: null,
+		live: "https://leroygrau.nl",
+		github: "",
+	},
+	{
+		id: "de-zorgheuvel",
+		num: "04",
+		category: "deZorgheuvel",
+		title: "Dezorgheuvel.nl",
+		description: "deZorgheuvelDescription",
+		stack: [{name: "websiteManagement"}],
+		image: null,
+		live: "https://dezorgheuvel.nl",
+		github: "",
+	},
+	{
+		id: "i-kozijn",
+		num: "05",
+		category: "iKozijn",
+		title: "I-kozijn.nl",
+		description: "iKozijnDescription",
+		stack: [{name: "websiteManagement"}],
+		image: null,
+		live: "https://i-kozijn.nl",
 		github: "",
 	},
 	// {
@@ -92,12 +125,23 @@ const projects = [
 								</h2>
 								{/* project description */}
 								<p className="text-text-light/60 dark:text-text-dark/60">{translate(project.description)}</p>
+								{project.live && (
+									<Link
+										href={project.live}
+										target="_blank"
+										rel="noopener noreferrer"
+										className="w-fit text-accent underline underline-offset-4 hover:text-accent-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+									>
+										{project.live.replace(/^https?:\/\//, "")}
+										<span className="sr-only"> — {translate("opensInNewTab")}</span>
+									</Link>
+								)}
 								{/* stack */}
 								<ul className="flex gap-3">
 									{project.stack.map((item, index) => {
 										return (
 											<li key={index} className="text-xl text-accent">
-												{item.name}
+												{translate(item.name)}
 												{/* remove the last comma */}
 												{index !== project.stack.length - 1 && ","}
 											</li>
@@ -108,19 +152,25 @@ const projects = [
 								<div className="border border-dark/80 dark:border-light/80"></div>
 								{/* buttons */}
 								<div className="flex items-center gap-4">
-									{/* live project button */}
-									{/*<Link href={project.live}>*/}
-									{/*  <TooltipProvider delayDuration={100}>*/}
-									{/*    <Tooltip>*/}
-									{/*      <TooltipTrigger className="w-[70px] h-[70px] rounded-full bg-white/5 flex justify-center items-center group">*/}
-									{/*        <BsArrowUpRight className="text-white text-3xl group-hover:text-accent" />*/}
-									{/*      </TooltipTrigger>*/}
-									{/*      <TooltipContent>*/}
-									{/*        <p>Live project</p>*/}
-									{/*      </TooltipContent>*/}
-									{/*    </Tooltip>*/}
-									{/*  </TooltipProvider>*/}
-									{/*</Link>*/}
+									{/* Opens the published website for portfolio entries with a public URL. */}
+									{project.live && (
+										<TooltipProvider delayDuration={100}>
+											<Tooltip>
+												<TooltipTrigger asChild>
+													<Link
+														href={project.live}
+														target="_blank"
+														rel="noopener noreferrer"
+														aria-label={`${translate("visitWebsite")} ${project.title}`}
+														className="w-[70px] h-[70px] rounded-full bg-black/5 dark:bg-white/5 flex justify-center items-center group"
+													>
+														<BsArrowUpRight className="text-text-light dark:text-text-dark text-3xl group-hover:text-accent" />
+													</Link>
+												</TooltipTrigger>
+												<TooltipContent><p>{translate("visitWebsite")}</p></TooltipContent>
+											</Tooltip>
+										</TooltipProvider>
+									)}
 									{/* Github project button */}
 									{/*<Link href={project.github}>*/}
 									{/*  <TooltipProvider delayDuration={100}>*/}
@@ -155,13 +205,19 @@ const projects = [
 													className="absolute top-0 bottom-0 w-full h-full bg-black/10 z-10"></div>
 												{/* image */}
 												<div className="relative w-full h-full">
-													<Image
+													{project.image ? <Image
 														src={project.image}
 														fill
 														className="object-cover"
 														alt={translate(project.category)}
 														sizes="(max-width: 1280px) 100vw, 50vw"
-													/>
+													/> : (
+														<div className="h-full flex items-center justify-center bg-gradient-to-br from-accent/20 via-white to-black/10 dark:from-accent/20 dark:via-[#27272c] dark:to-black">
+															<span className="px-6 text-center text-3xl sm:text-5xl font-bold text-text-light dark:text-text-dark">
+																{project.title}
+															</span>
+														</div>
+													)}
 												</div>
 											</div>
 										</SwiperSlide>
@@ -171,6 +227,8 @@ const projects = [
 								<WorkSliderBtns
 									containerStyles="flex gap-2 absolute right-0 bottom-[calc(50%_-_22px)] xl:bottom-0 z-20 w-full justify-between xl:w-max xl:justify-none"
 									btnStyles="bg-accent hover:bg-accent-hover text-primary text-[22px] w-[44px] h-[44px] flex justify-center items-center transition-all"
+									previousLabel={translate("previousProject")}
+									nextLabel={translate("nextProject")}
 								/>
 							</Swiper>
 						</div>

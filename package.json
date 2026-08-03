@@ -8,7 +8,8 @@
     "write-commit-date": "node scripts/write-commit-date.js",
     "start": "next start",
     "lint": "eslint .",
-    "test:security": "node --test tests/security-regressions.test.mjs"
+    "test:security": "node --test tests/security-regressions.test.mjs",
+    "test:translations": "node --test tests/translations.test.mjs"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.23",
