@@ -49,6 +49,8 @@ h1, h2, h3, h4 { font-weight: 600; line-height: 1.12; letter-spacing: -.045em; }
 .main-nav a:hover::after, .main-nav a[aria-current]::after { transform: scaleX(1); }
 .header-tools { display: flex; align-items: center; gap: 16px; padding-left: 24px; border-left: 1px solid var(--line); }
 .locale-select { background: var(--page); color: var(--ink); font-size: 13px; padding: 8px 2px; border: 0; }
+.locale-select:focus { outline: none; }
+.locale-select:focus-visible { background: var(--accent-soft); box-shadow: 0 2px 0 var(--accent); }
 .icon-button { display: grid; place-items: center; width: 38px; height: 38px; border: 1px solid var(--line); border-radius: 50%; color: var(--ink); background: transparent; }
 .icon-button svg { width: 18px; height: 18px; }
 .icon-button:hover { background: var(--accent-soft); border-color: var(--accent); }

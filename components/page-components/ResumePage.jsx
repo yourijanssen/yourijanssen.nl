@@ -149,6 +149,7 @@ const education = {
 		{
 			institution: "examBoard",
 			degree: "vwoDegree",
+			description: "vwoCertificates",
 			duration: "2015",
 		},
 		{
@@ -701,8 +702,8 @@ export default function ResumePage({embedded = false}) {
         <TabsContent value="experience"><h3 className="panel-title">{translate(experience.title)}</h3><ol className="timeline">
           {experience.items.map(item => <li key={item.company}><span className="timeline-date">{translate(item.duration)}</span><div><h4>{item.companyKey ? translate(item.companyKey) : item.company}</h4><p>{translate(item.position)}</p></div></li>)}
         </ol></TabsContent>
-        <TabsContent value="education"><h3 className="panel-title">{translate(education.title)}</h3><ol className="timeline">
-          {education.items.map(item => <li key={item.degree}><span className="timeline-date">{item.duration}</span><div><h4>{translate(item.degree)}</h4><p>{translate(item.institution)}</p><small>{translate('credentialAvailableOnRequest')}</small></div></li>)}
+        <TabsContent value="education"><h3 className="panel-title">{translate(education.title)}</h3><p className="panel-description">{translate('credentialAvailableOnRequest')}</p><ol className="timeline">
+          {education.items.map(item => <li key={item.degree}><span className="timeline-date">{item.duration}</span><div><h4>{translate(item.degree)}</h4><p>{translate(item.institution)}</p>{item.description && <p>{translate(item.description)}</p>}</div></li>)}
         </ol></TabsContent>
         <TabsContent value="certifications"><h3 className="panel-title">{translate(certifications.title)}</h3><ol className="timeline">
           {certifications.items.map(item => <li key={item.name}><span className="timeline-date">{translate(item.issued)}</span><div><h4>{item.name}</h4><p>{item.issuer}</p></div></li>)}
