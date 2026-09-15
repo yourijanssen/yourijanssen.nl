@@ -1,37 +1,59 @@
-import Image from 'next/image';
 import Link from 'next/link';
-import {ArrowUpRight, Plus, Minus} from 'lucide-react';
+import {ArrowUpRight} from 'lucide-react';
 import {useTranslation} from 'next-i18next/pages';
 
 const projects = [
 	{
+		id: "de-zorgheuvel-intranet",
+		endDate: null,
+		category: "deZorgheuvelIntranet",
+		description: "deZorgheuvelIntranetDescription",
+		type: "intranetDevelopment",
+		live: "https://intranet.dezorgheuvel.nl",
+	},
+	{
+		id: "zoi-pantou",
+		endDate: "2026-08",
+		category: "zoiPantou",
+		description: "zoiPantouDescription",
+		type: "projectWebsite",
+		live: "https://zoipantou.com",
+	},
+	{
+		id: "get2gether",
+		endDate: null,
+		ongoing: true,
+		category: "get2gether",
+		description: "get2getherDescription",
+		type: "projectWebsite",
+		live: "https://get2getherproject.com",
+	},
+	{
 		id: "bim-builder",
-		num: "01",
+		endDate: "2024-12",
 		category: "bim",
 		title: "",
 		icon: "",
 		description:
 			"bimdes",
 		stack: [{name: "Tailwind"}, {name: "Three"}, {name: "MongoDB"}],
-		image: "/assets/work/bimBuilder.png",
 		live: "",
 		github: "",
 	},
 	{
 		id: "ticket-system",
-		num: "02 ",
+		endDate: "2024-03",
 		category: "ticket",
 		title: "",
 		description:
 			"ticketdes",
 		stack: [{name: "Spring MVC"}, {name: "React"}, {name: "MariaDB"}],
-		image: "/assets/work/ticketSystem.png",
 		live: "",
 		github: "",
 	},
 	{
 		id: "leroy-grau",
-		num: "03",
+		endDate: "2026-07",
 		category: "leroyGrau",
 		title: "Leroygrau.nl",
 		description: "leroyGrauDescription",
@@ -42,7 +64,7 @@ const projects = [
 	},
 	{
 		id: "de-zorgheuvel",
-		num: "04",
+		endDate: "2026-04",
 		category: "deZorgheuvel",
 		title: "Dezorgheuvel.nl",
 		description: "deZorgheuvelDescription",
@@ -53,7 +75,8 @@ const projects = [
 	},
 	{
 		id: "i-kozijn",
-		num: "05",
+		endDate: null,
+		ongoing: true,
 		category: "iKozijn",
 		title: "I-kozijn.nl",
 		description: "iKozijnDescription",
@@ -75,22 +98,55 @@ const projects = [
 	// },
 ];
 
-/** Makes every project discoverable, with expandable details and genuine live links. */
+// endDate accepts YYYY, YYYY-MM or YYYY-MM-DD, preserving the known precision.
+// null means unknown, unless ongoing is true. Undated projects appear last.
+const undatedOrder = ['leroy-grau', 'de-zorgheuvel', 'de-zorgheuvel-intranet', 'i-kozijn', 'bim-builder', 'ticket-system', 'zoi-pantou', 'get2gether'];
+
+/** Shows ongoing projects first, then newest end dates, then undated projects. */
+function sortProjectsByEndDate(items) {
+  return [...items].sort((a, b) => {
+    if (Boolean(a.ongoing) !== Boolean(b.ongoing)) return a.ongoing ? -1 : 1;
+    if (a.endDate && b.endDate) return b.endDate.localeCompare(a.endDate);
+    if (a.endDate) return -1;
+    if (b.endDate) return 1;
+    return undatedOrder.indexOf(a.id) - undatedOrder.indexOf(b.id);
+  });
+}
+
+/** Displays project status without implying more date precision than is known. */
+function ProjectStatus({project}) {
+  const {t, i18n} = useTranslation('common');
+  let dateLabel = project.endDate;
+  if (project.endDateNote) dateLabel = t(project.endDateNote);
+  else if (project.endDate?.length > 4) {
+    const [year, month, day] = project.endDate.split('-').map(Number);
+    dateLabel = new Intl.DateTimeFormat(i18n.language || 'en', {
+      year: 'numeric', month: 'long', ...(day ? {day: 'numeric'} : {}), timeZone: 'UTC',
+    }).format(new Date(Date.UTC(year, month - 1, day || 1)));
+  }
+  return <p className="project-status" data-ongoing={Boolean(project.ongoing)}>
+    {project.ongoing ? t('projectOngoing') : project.endDate ? <>{t('projectCompleted')} · <time dateTime={project.endDate}>{dateLabel}</time></> : t('projectStatusUnknown')}
+  </p>;
+}
+
+/** Makes every project discoverable, ordered by end date rather than presentation type. */
 export default function WorkPage({embedded = false}) {
   const {t} = useTranslation('common');
   const Heading = embedded ? 'h2' : 'h1';
+  const sortedProjects = sortProjectsByEndDate(projects);
+  const visibleProjects = embedded ? sortedProjects.slice(0, 4) : sortedProjects;
   return <section className="section work-section shell">
     <div className="section-heading"><div><p className="section-label">{t('workPageTitle')}</p><Heading>{t('workHeadline')}</Heading></div>
       {embedded ? <Link className="text-link" href="/work">{t('viewAllProjects')}<ArrowUpRight size={17} /></Link> : <p>{t('workIntro')}</p>}
     </div>
-    <div className="featured-projects">{projects.slice(0, 2).map(project => <article className="project" key={project.id}>
-      <div className="project-image"><Image src={project.image} alt={t(project.category)} fill sizes="(max-width: 700px) 90vw, 45vw" className="object-contain" /></div>
-      <div className="project-meta"><span>{project.num.trim()}</span><span>{project.stack.map(item => item.name).join(' / ')}</span></div>
-      <h3>{t(project.category)}</h3>
-      <details className="project-details"><summary>{t('projectDetails')}<Plus className="details-plus" size={18} /><Minus className="details-minus" size={18} /></summary><p>{t(project.description)}</p></details>
-    </article>)}</div>
-    <div className="client-projects">{projects.slice(2).map(project => <article className="client-project" key={project.id}>
-      <span className="project-index">{project.num}</span><div><h3><a href={project.live} target="_blank" rel="noopener noreferrer">{t(project.category)}<ArrowUpRight size={21} /><span className="sr-only"> — {t('opensInNewTab')}</span></a></h3><p>{t(project.description)}</p></div><span className="project-type">{t('websiteManagement')}</span>
+    <div className="project-timeline">{visibleProjects.map((project, index) => <article className="client-project" key={project.id}>
+      <span className="project-index">{String(index + 1).padStart(2, '0')}</span>
+      <div>
+        <h3>{project.live ? <a href={project.live} target="_blank" rel="noopener noreferrer">{t(project.category)}<ArrowUpRight size={21} /><span className="sr-only"> — {t('opensInNewTab')}</span></a> : t(project.category)}</h3>
+        <ProjectStatus project={project} />
+        <p>{t(project.description)}</p>
+      </div>
+      <span className="project-type">{project.live ? t(project.type || 'websiteManagement') : project.stack.map(item => item.name).join(' / ')}</span>
     </article>)}</div>
   </section>;
 }

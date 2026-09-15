@@ -68,7 +68,7 @@ const about = {
 		},
 		{
 			fieldName: "Languages",
-			fieldValue: "English, Dutch, German",
+			fieldValue: "spokenLanguages",
 		},
 	],
 };
@@ -99,6 +99,12 @@ const experience = {
 			company: "IRP",
 			position: "fullStackDeveloper",
 			duration: "irpDuration",
+		},
+		{
+			company: "HvA",
+			companyKey: "HVA",
+			position: "hvaScrumProject",
+			duration: "hvaScrumDuration",
 		},
 
 	],
@@ -272,9 +278,25 @@ const skills = {
 		"skillsdes2",
 	year: "2022",
 	skillList: [
+		// Technologies used in this portfolio and the accompanying Codex workflow in 2026.
+		{icon: <BiTerminal/>, name: "OpenAI Codex", year: 2026, link: "https://developers.openai.com/codex/"},
+		{icon: <BiTerminal/>, nameKey: "agentDevelopment", year: 2026, link: "https://developers.openai.com/codex/"},
+		{icon: <SiNextdotjs/>, name: "Turbopack", year: 2026, link: "https://nextjs.org/docs/app/api-reference/turbopack"},
+		{icon: <FaCss3/>, name: "PostCSS", year: 2026, link: "https://postcss.org/"},
+		{icon: <FaReact/>, name: "shadcn/ui", year: 2026, link: "https://ui.shadcn.com/"},
+		{icon: <FaReact/>, name: "Framer Motion", year: 2026, link: "https://motion.dev/"},
+		{icon: <FaJs/>, name: "Web Animations API", year: 2026, link: "https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API"},
+		{icon: <FaJs/>, name: "Intersection Observer", year: 2026, link: "https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API"},
+		{icon: <FaReact/>, name: "i18next / next-i18next", year: 2025, link: "https://www.i18next.com/"},
+		{icon: <FaJs/>, name: "Chart.js / react-chartjs-2", year: 2026, link: "https://www.chartjs.org/"},
+		{icon: <FaReact/>, name: "Lucide / React Icons", year: 2026, link: "https://lucide.dev/"},
+		{icon: <SiNextdotjs/>, name: "Vercel Analytics / Speed Insights", year: 2026, link: "https://vercel.com/docs/analytics"},
+		// The 2025 entries reflect the recorded IAM role, DevOps traineeship and Scrum certification.
+		{icon: <SiSpringsecurity/>, nameKey: "identityAccessManagement", year: 2025, link: "https://en.wikipedia.org/wiki/Identity_and_access_management"},
+		{icon: <BiTerminal/>, name: "DevOps", year: 2025, link: "https://en.wikipedia.org/wiki/DevOps"},
 		{
 			icon: <FaHtml5/>,
-			name: "html 5",
+			name: "HTML5",
 			year: 2022,
 			link: "https://en.wikipedia.org/wiki/HTML5",
 		},
@@ -298,19 +320,19 @@ const skills = {
 		},
 		{
 			icon: <FaCss3/>,
-			name: "css 3",
+			name: "CSS3",
 			year: 2022,
 			link: "https://en.wikipedia.org/wiki/CSS",
 		},
 		{
 			icon: <FaJs/>,
-			name: "javascript",
+			name: "JavaScript",
 			year: 2022,
 			link: "https://en.wikipedia.org/wiki/JavaScript",
 		},
 		{
 			icon: <SiTypescript/>,
-			name: "Typescript",
+			name: "TypeScript",
 			year: 2022,
 			link: "https://en.wikipedia.org/wiki/TypeScript",
 		},
@@ -341,7 +363,7 @@ const skills = {
 		},
 		{
 			icon: <SiIos/>,
-			name: " IOS",
+			name: "iOS",
 			year: 2016,
 			link: "https://en.wikipedia.org/wiki/IOS",
 		},
@@ -371,13 +393,13 @@ const skills = {
 		},
 		{
 			icon: <SiGimp/>,
-			name: "Gimp",
+			name: "GIMP",
 			year: 2020,
 			link: "https://en.wikipedia.org/wiki/GIMP",
 		},
 		{
 			icon: <TbBrandAdobePremiere/>,
-			name: "Premier Pro",
+			name: "Premiere Pro",
 			year: 2020,
 			link: "https://en.wikipedia.org/wiki/Adobe_Premiere_Pro",
 		},
@@ -407,7 +429,7 @@ const skills = {
 		},
 		{
 			icon: <SiEslint/>,
-			name: "ESlint",
+			name: "ESLint",
 			year: 2023,
 			link: "https://en.wikipedia.org/wiki/ESLint",
 		},
@@ -425,55 +447,55 @@ const skills = {
 		},
 		{
 			icon: <SiExpress/>,
-			name: "Express.Js",
+			name: "Express.js",
 			year: 2023,
 			link: "https://en.wikipedia.org/wiki/Express.js",
 		},
 		{
 			icon: <GrMysql/>,
-			name: "MySql",
+			name: "MySQL",
 			year: 2022,
 			link: "https://en.wikipedia.org/wiki/MySQL",
 		},
 		{
 			icon: <FaReact/>,
-			name: "react.js",
+			name: "React",
 			year: 2023,
 			link: "https://en.wikipedia.org/wiki/React_(JavaScript_library)",
 		},
 		{
 			icon: <SiNextdotjs/>,
-			name: "next.js",
+			name: "Next.js",
 			year: 2024,
 			link: "https://en.wikipedia.org/wiki/Next.js",
 		},
 		{
 			icon: <SiTailwindcss/>,
-			name: "tailwind.css",
+			name: "Tailwind CSS",
 			year: 2024,
 			link: "https://en.wikipedia.org/wiki/Tailwind_CSS",
 		},
 		{
 			icon: <FaNodeJs/>,
-			name: "node.js",
+			name: "Node.js",
 			year: 2023,
 			link: "https://en.wikipedia.org/wiki/Node.js",
 		},
 		{
 			icon: <FaFigma/>,
-			name: "figma",
+			name: "Figma",
 			year: 2022,
 			link: "https://en.wikipedia.org/wiki/Figma",
 		},
 		{
 			icon: <FaAngular/>,
-			name: "angular",
+			name: "Angular",
 			year: 2023,
 			link: "https://en.wikipedia.org/wiki/AngularJS",
 		},
 		{
 			icon: <FaJava/>,
-			name: "java",
+			name: "Java",
 			year: 2023,
 			link: "https://en.wikipedia.org/wiki/Java_(programming_language)",
 		},
@@ -528,7 +550,7 @@ const skills = {
 
 		{
 			icon: <SiMacos/>,
-			name: "Mac OS",
+			name: "macOS",
 			year: 2015,
 			link: "https://en.wikipedia.org/wiki/MacOS",
 		},
@@ -558,19 +580,19 @@ const skills = {
 		},
 		{
 			icon: <VscVscode/>,
-			name: "VSCode",
+			name: "VS Code",
 			year: 2022,
 			link: "https://en.wikipedia.org/wiki/Visual_Studio_Code",
 		},
 		{
 			icon: <DiIntellij/>,
-			name: "Intellij",
+			name: "IntelliJ IDEA",
 			year: 2023,
 			link: "https://en.wikipedia.org/wiki/IntelliJ_IDEA",
 		},
 		{
 			icon: <FaNpm/>,
-			name: "NPM",
+			name: "npm",
 			year: 2022,
 			link: "https://en.wikipedia.org/wiki/Npm",
 		},
@@ -594,7 +616,7 @@ const skills = {
 		},
 		{
 			icon: <FaRegFilePowerpoint/>,
-			name: "Powerpoint",
+			name: "PowerPoint",
 			year: 2016,
 			link: "https://en.wikipedia.org/wiki/Microsoft_PowerPoint",
 		},
@@ -658,10 +680,10 @@ import {PiMicrosoftTeamsLogo} from "react-icons/pi";
 import {BiTerminal} from "react-icons/bi";
 import Image from "next/image";
 import TypingAnimation from "@/components/TypingAnimation";
-import dynamic from 'next/dynamic';
+// import dynamic from 'next/dynamic';
 
-// Load the chart library only when the skills panel is opened.
-const BarExample = dynamic(() => import('@/components/bar'), {ssr: false});
+// Proficiency charts are intentionally disabled; retain the component for later use.
+// const BarExample = dynamic(() => import('@/components/bar'), {ssr: false});
 import {useTranslation} from "next-i18next/pages";
 
 
@@ -673,11 +695,11 @@ export default function ResumePage({embedded = false}) {
     <div className="section-heading"><div><p className="section-label">{translate('resumePageTitle')}</p><Heading>{translate('resumeHeadline')}</Heading></div><p>{translate('resumeIntro')}</p></div>
     <Tabs defaultValue="experience" className="resume-layout">
       <TabsList className="resume-tabs" aria-label={translate('resumePageTitle')}>
-        {['experience', 'about', 'education', 'certifications', 'skills', 'courses'].map(key => <TabsTrigger value={key} key={key}>{translate(key + 'Tab')}</TabsTrigger>)}
+        {['experience', 'about', 'education', 'certifications', 'skills', 'courses'].map(key => <TabsTrigger value={key} key={key}><span>{translate(key + 'Tab')}</span><span aria-hidden="true">→</span></TabsTrigger>)}
       </TabsList>
       <div className="resume-content">
         <TabsContent value="experience"><h3 className="panel-title">{translate(experience.title)}</h3><ol className="timeline">
-          {experience.items.map(item => <li key={item.company}><span className="timeline-date">{translate(item.duration)}</span><div><h4>{item.company}</h4><p>{translate(item.position)}</p></div></li>)}
+          {experience.items.map(item => <li key={item.company}><span className="timeline-date">{translate(item.duration)}</span><div><h4>{item.companyKey ? translate(item.companyKey) : item.company}</h4><p>{translate(item.position)}</p></div></li>)}
         </ol></TabsContent>
         <TabsContent value="education"><h3 className="panel-title">{translate(education.title)}</h3><ol className="timeline">
           {education.items.map(item => <li key={item.degree}><span className="timeline-date">{item.duration}</span><div><h4>{translate(item.degree)}</h4><p>{translate(item.institution)}</p><small>{translate('credentialAvailableOnRequest')}</small></div></li>)}
@@ -688,10 +710,14 @@ export default function ResumePage({embedded = false}) {
         <TabsContent value="about"><h3 className="panel-title">{translate(about.title)}</h3><p className="about-copy">{translate(about.description)}</p><dl className="about-facts">
           {about.info.map(item => <div key={item.fieldName}><dt>{translate(item.fieldName)}</dt><dd>{translate(item.fieldValue)}</dd></div>)}
         </dl></TabsContent>
-        <TabsContent value="skills"><h3 className="panel-title">{translate(skills.title)}</h3><p className="panel-description">{translate(skills.description1)}</p><BarExample />
+        <TabsContent value="skills"><h3 className="panel-title">{translate(skills.title)}</h3>
+          {/* Proficiency comparison and both charts are intentionally hidden.
+          <p className="panel-description">{translate(skills.description1)}</p>
+          <BarExample />
+          */}
           <p className="panel-description">{translate(skills.description2)}</p>
           {Object.keys(skillsByYear).sort((a, b) => b - a).map(year => <div className="skill-year" key={year}><h4>{year}</h4><ul className="skill-list">
-            {skillsByYear[year].map((skill, index) => <li key={index}><a href={skill.link} target="_blank" rel="noopener noreferrer">{skill.icon}<span>{skill.name}</span><span className="sr-only"> — {translate('opensInNewTab')}</span></a></li>)}
+            {skillsByYear[year].map((skill, index) => <li key={index}><a href={skill.link} target="_blank" rel="noopener noreferrer">{skill.icon}<span>{skill.nameKey ? translate(skill.nameKey) : skill.name}</span><span className="sr-only"> — {translate('opensInNewTab')}</span></a></li>)}
           </ul></div>)}
         </TabsContent>
         <TabsContent value="courses"><h3 className="panel-title">{translate(courses.title)}</h3><p className="panel-description">{translate(courses.description)}</p><ul className="course-list">

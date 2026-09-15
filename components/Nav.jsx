@@ -2,7 +2,7 @@ import Link from 'next/link';
 import {useRouter} from 'next/router';
 import {useTranslation} from 'next-i18next/pages';
 
-export const navigation = [['home', '/'], ['work', '/work'], ['resume', '/resume'], ['services', '/services'], ['contact', '/contact']];
+export const navigation = [['work', '/work'], ['resume', '/resume'], ['services', '/services'], ['contact', '/contact']];
 
 /** Uses the locale-independent route to identify the current navigation item. */
 export default function Nav() {
