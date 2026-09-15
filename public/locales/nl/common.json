@@ -3,12 +3,10 @@
   "fullStack": "Full-stack ontwikkelaar",
   "hello": "Hallo ik ben",
   "welcome": "Welkom op mijn portfoliopagina! Hier vind je informatie over mij en mijn projecten. Heb je vragen of wil je contact opnemen? Bekijk dan de contactpagina.",
-
   "commit": "Pagina aangepast op:",
   "yearsOfExperience": "Jaren ervaring",
   "projectsCompleted": "Projecten afgerond",
   "technologiesMastered": "Technologieën beheerst",
-
   "Hire": "Neem contact op",
   "home": "start",
   "services": "diensten",
@@ -25,14 +23,12 @@
   "workPageTitle": "Projecten",
   "contactPageTitle": "Contact",
   "footerDescription": "Portfolio van Youri Janssen",
-
   "long": "Langdurig dienstverband",
   "longdes": "Afhankelijk van mijn huidige werksituatie ben ik beschikbaar om uw team te versterken als full-stack ontwikkelaar. Bekijk mijn cv of neem contact met mij op om te bepalen of ik geschikt ben voor de positie die u probeert te vervullen.",
   "custom": "Websiteontwikkeling op maat",
   "customdes": "Ik bied websiteontwikkeling op maat, afgestemd op uw behoeften. Mijn diensten omvatten:<br/><br/>\n    - Initiële ontwikkeling, waarbij de kosten en onderhoudstarieven afhangen van de complexiteit van het project.<br/>\n    - Een domeinnaam naar keuze.<br/>\n    - Een e-maildienst voor klantvragen via de contactpagina.<br/>\n    - Hulpmiddelen om websiteverkeer en prestaties te meten.<br/>\n    - Doorontwikkeling van bestaande projecten.<br/><br/>\n    Daarnaast kan ik verschillende ontwerpvoorstellen aanleveren, zodat u het ontwerp kunt kiezen dat het beste bij uw voorkeuren past.",
   "interface": "Gebruikersinterfaceontwerp",
   "interfacedes": "Als u een aangepast en uniek ontwerp voor uw website wilt, kan ik dit voor u maken in Figma.",
-
   "bim": "BIM Salesviewer",
   "bimdes": "Dit was mijn afstudeerproject voor mijn tweejarige opleiding Software Development. BIM, of Building Information Modeling, omvat het maken en beheren van digitale representaties van de fysieke en functionele kenmerken van gebouwen en andere objecten. Ik ontwikkelde een hulpmiddel dat dit proces toegankelijker maakte voor de klanten van de producteigenaar.",
   "ticket": "Ticketsysteem",
@@ -51,7 +47,6 @@
   "currentBackendSkills": "Huidige backendvaardigheden",
   "currentFrontendSkills": "Huidige frontendvaardigheden",
   "proficiency": "Vaardigheidsniveau",
-
   "Email": "E-mail",
   "Location": "Locatie",
   "Name": "Naam",
@@ -59,7 +54,6 @@
   "Nationality": "Nationaliteit",
   "Status": "Status",
   "Languages": "Talen",
-
   "HVA": "Hogeschool van Amsterdam",
   "HKU": "Hogeschool voor de Kunsten Utrecht",
   "associateSoftwareDevelopment": "Associate degree Software Development",
@@ -68,14 +62,12 @@
   "vwoDegree": "Voorbereidend wetenschappelijk onderwijs (vwo)",
   "havoDegree": "Hoger algemeen voortgezet onderwijs (havo)",
   "examBoard": "College voor Toetsen en Examens",
-
   "skillsTab": "Vaardigheden",
   "aboutTab": "Over mij",
   "experienceTab": "Ervaring",
   "coursesTab": "Cursussen",
   "educationTab": "Onderwijs",
   "certificationsTab": "Certificeringen",
-
   "About": "Over mij",
   "Aboutdes": "Hoi! Mijn naam is Youri Janssen en ik ben een full-stack ontwikkelaar die als PHP Developer bij WOW media werkt. Na het behalen van mijn Associate degree Software Development aan de Hogeschool van Amsterdam werkte ik als DevOps-trainee bij Working Talent en als Identity & Access Management Engineer bij DICTU. Voordat ik de overstap naar softwareontwikkeling maakte, behaalde ik een Bachelor of Arts in Kunst & Economie aan de HKU. Ik ben Professional Scrum Master I-gecertificeerd en bouw graag betrouwbare, toegankelijke webapplicaties.",
   "experienceValue": "4 jaar",
@@ -102,5 +94,28 @@
   "skillsdes": "Dit overzicht vergelijkt de belangrijkste ontwikkelvaardigheden waarmee ik heb gewerkt en mijn huidige vaardigheidsniveau per onderdeel:",
   "skillsdes2": "Hier is een overzicht van alle vaardigheden die ik tot nu toe heb opgedaan, ingedeeld per jaar:",
   "courses": "Favoriete cursussen",
-  "coursesdes": "Hier is een uitgebreide lijst van cursussen die in de loop der jaren aanzienlijk hebben bijgedragen aan mijn leerproces:"
+  "coursesdes": "Hier is een uitgebreide lijst van cursussen die in de loop der jaren aanzienlijk hebben bijgedragen aan mijn leerproces:",
+  "heroTitle": "Doordachte code.",
+  "heroTitleAccent": "Waardevolle ervaringen.",
+  "heroIntro": "Ik ben Youri, full-stack developer in Amsterdam. Ik vertaal complexe ideeën naar betrouwbare, toegankelijke webervaringen.",
+  "exploreWork": "Bekijk mijn werk",
+  "portraitAlt": "Portret van Youri Janssen",
+  "mainNavigation": "Hoofdnavigatie",
+  "selectLanguage": "Selecteer taal",
+  "skipToContent": "Ga naar de inhoud",
+  "backToTop": "Terug naar boven",
+  "workHeadline": "Een selectie van mijn werk.",
+  "workIntro": "Van interactieve bouwmodellen tot praktische bedrijfstools. Een kijkje in de projecten waaraan ik heb meegewerkt.",
+  "viewAllProjects": "Bekijk alle projecten",
+  "projectDetails": "Over dit project",
+  "resumeHeadline": "Iets meer over mij.",
+  "resumeIntro": "Een achtergrond in kunst en economie. Een focus op software. Altijd nieuwsgierig naar de volgende stap.",
+  "servicesHeadline": "Samen maken we het.",
+  "servicesIntro": "Doordacht ontwerp en betrouwbare ontwikkeling, van het eerste idee tot de volgende verbetering.",
+  "contactHeadline": "Heb je iets in gedachten?",
+  "contactIntro": "Een interessant project, een nieuwe kans of gewoon een goed gesprek. Ik hoor graag van je.",
+  "sendEmail": "Stuur een e-mail",
+  "discussService": "Bespreek deze dienst",
+  "openCourse": "Open cursus",
+  "courseCover": "Cursusomslag"
 }

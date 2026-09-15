@@ -1,91 +1,15 @@
-import {motion} from "framer-motion";
-import {Trans} from "react-i18next";
-import {useTranslation} from "next-i18next/pages";
+import Link from 'next/link';
+import {ArrowUpRight} from 'lucide-react';
+import {Trans} from 'react-i18next';
+import {useTranslation} from 'next-i18next/pages';
 
-
-/**
- * Array containing service objects with details.
- * @property {string} num - Service number.
- * @property {string} title - Title of the service.
- * @property {string} description - Description of the service.
- * @property {string} href - Link URL for the service.
- */
-const servicesPage = [
-	{
-		num: "01",
-		titleKey: "long",
-		descriptionKey: "longdes",
-		href: "",
-	},
-	{
-		num: "02",
-		titleKey: "custom",
-		descriptionKey: "customdes",
-		href: "",
-	},
-	{
-		num: "03",
-		titleKey: "interface",
-		descriptionKey: "interfacedes",
-		href: "",
-	},
-];
-
-/**
- * Services component displays a list of servicesPage with titles, descriptions, and links.
- *
- * @returns {JSX.Element} Services component.
- */
-const ServicesPage = () => {
-	const {t: translate} = useTranslation('common');
-
-	return (
-		<>
-			<section className="min-h-[80vh] flex flex-col justify-center py-12 xl:py-0">
-				<div className="container mx-auto">
-					<motion.div
-						initial={{opacity: 0}}
-						animate={{
-							opacity: 1,
-							transition: {delay: 0.2, duration: 0.3, ease: "easeIn"},
-						}}
-						className="grid grid-cols-1 md:grid-cols-1 gap-[60px]"
-					>
-						{servicesPage.map((service, index) => (
-							<div
-								key={index}
-								className="flex-1 flex flex-col justify-start gap-6 group"
-							>
-								{/* top */}
-								<div className="w-full flex justify-between items-center">
-									<div className="text-5xl font-extrabold text-text-light dark:text-text-dark">
-										{service.num}
-									</div>
-									{/* Uncomment and use the Link component if needed */}
-									{/* <Link
-                    href={service.href}
-                    className="w-[70px] h-[70px] rounded-full b dark:bg-light group-hover:bg-accent transition-all duration-500 flex justify-center items-center hover:-rotate-45"
-                  >
-                    <BsArrowDownRight className="text-primary text-3xl" />
-                  </Link> */}
-								</div>
-								{/* title */}
-								<h2 className="text-[42px] font-bold leading-none text-text-light dark:text-text-dark">
-									{translate(service.titleKey)}
-								</h2>
-								{/* description */}
-								<p className="text-text-light/60 dark:text-text-dark/60">
-									<Trans i18nKey={service.descriptionKey} components={{br: <br/>}}/>
-								</p>
-								{/* border */}
-								<div className="border-b border-dark/80 dark:border-light/80 w-full"></div>
-							</div>
-						))}
-					</motion.div>
-				</div>
-			</section>
-		</>
-	);
-};
-
-export default ServicesPage;
+/** Gives each service a readable row with a direct route to discuss a project. */
+export default function ServicesPage({embedded = false}) {
+  const {t} = useTranslation('common');
+  const Heading = embedded ? 'h2' : 'h1';
+  return <section className="section services-section shell"><div className="section-heading"><div><p className="section-label">{t('servicesPageTitle')}</p><Heading>{t('servicesHeadline')}</Heading></div><p>{t('servicesIntro')}</p></div>
+    <div className="service-list">{[['long', 'longdes'], ['custom', 'customdes'], ['interface', 'interfacedes']].map(([title, description], index) =>
+      <article className="service-row" key={title}><span className="service-number">0{index + 1}</span><h3>{t(title)}</h3><div className="service-description"><Trans i18nKey={description} t={t} components={{br: <br />}} /></div><Link href="/contact" className="round-link" aria-label={`${t('discussService')}: ${t(title)}`}><ArrowUpRight size={22} /></Link></article>
+    )}</div>
+  </section>;
+}

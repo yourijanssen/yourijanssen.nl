@@ -11,9 +11,8 @@ const DarkModeToggle = () => {
 	return (
 		<button
 			onClick={toggleDarkMode}
-			className={`py-1 px-2 rounded-full ${
-				isDarkMode ? "bg-gray-200 text-gray-800" : "bg-gray-800 text-white"
-			}`}
+			className="icon-button theme-toggle"
+			aria-pressed={isDarkMode}
 			aria-label={isDarkMode ? t('switchToLightMode') : t('switchToDarkMode')}
 		>
 			{isDarkMode ? <BiSun size={24}/> : <BiMoon size={24}/>}

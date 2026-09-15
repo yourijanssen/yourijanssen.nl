@@ -658,230 +658,46 @@ import {PiMicrosoftTeamsLogo} from "react-icons/pi";
 import {BiTerminal} from "react-icons/bi";
 import Image from "next/image";
 import TypingAnimation from "@/components/TypingAnimation";
-import BarExample from "@/components/bar";
+import dynamic from 'next/dynamic';
+
+// Load the chart library only when the skills panel is opened.
+const BarExample = dynamic(() => import('@/components/bar'), {ssr: false});
 import {useTranslation} from "next-i18next/pages";
 
-const ResumePage = ({t}) => {
-	const {t: translate} = useTranslation('common');
 
-	return (
-		<>
-			<motion.div
-				initial={{opacity: 0}}
-				animate={{
-					opacity: 1,
-					transition: {delay: 0.2, duration: 0.3, ease: "easeIn"},
-				}}
-				className="min-h-[80vh] flex items-center justify-center py-12 xl:py-0"
-			>
-				<div className="container mx-auto">
-					<Tabs
-						defaultValue="experience"
-						className="flex flex-col xl:flex-row gap-[60px]"
-					>
-						<TabsList className="flex flex-col w-full max-w-[380px] mx-auto xl:mx-0 gap-6">
-							<TabsTrigger value="experience">{translate("experienceTab")}</TabsTrigger>
-							<TabsTrigger value="about">{translate("aboutTab")}</TabsTrigger>
-							<TabsTrigger value="education">{translate("educationTab")}</TabsTrigger>
-							<TabsTrigger value="certifications">{translate("certificationsTab")}</TabsTrigger>
-							<TabsTrigger value="skills">{translate("skillsTab")}</TabsTrigger>
-							<TabsTrigger value="courses">{translate("coursesTab")}</TabsTrigger>
-						</TabsList>
-
-						{/* content */}
-						<div className="min-h-[70vh] w-full">
-							{/* experience */}
-							<TabsContent value="experience" className="w-full">
-								<div className="flex flex-col gap-[30px] text-center xl:text-left">
-									<h3 className="text-4xl font-bold text-text-light dark:text-text-dark">{translate(experience.title)}</h3>
-									<p className="max-w-[600px] text-text-light dark:text-text-dark mx-auto xl:mx-0">
-										{translate(experience.description)}
-									</p>
-									<ScrollArea className="h-[400px]">
-										<ul className="grid grid-cols-1 lg:grid-cols-2 gap-[30px]">
-											{experience.items.map((item, index) => {
-												return (
-													<li
-														key={index}
-														className="dark:bg-[#232329] bg-[#CCCCCC] h-[184px] py-6 px-10 rounded-xl flex flex-col justify-center items-center lg:items-start gap-1 "
-													>
-														<span className="text-accent">{translate(item.duration)}</span>
-														<h3 className="text-xl max-w-[260px] min-h-[60px] text-center lg:text-left text-text-light/80 dark:text-text-dark">
-															{translate(item.position)}
-														</h3>
-														<div className="flex items-center gap-3">
-															{/* dot */}
-															<span
-																className="w-[6px] h-[6px] rounded-full bg-accent"></span>
-															<p className="text-text-light/80 dark:text-text-dark/60">{item.company}</p>
-														</div>
-													</li>
-												);
-											})}
-										</ul>
-									</ScrollArea>
-								</div>
-							</TabsContent>
-
-							{/* certifications */}
-							<TabsContent value="certifications" className="w-full">
-								<div className="flex flex-col gap-[30px] text-center xl:text-left">
-									<h3 className="text-4xl font-bold text-text-light dark:text-text-dark">{translate(certifications.title)}</h3>
-									<p className="max-w-[600px] text-text-light dark:text-text-dark mx-auto xl:mx-0">
-										{translate(certifications.description)}
-									</p>
-									<ul className="grid grid-cols-1 lg:grid-cols-2 gap-[30px]">
-										{certifications.items.map((item) => (
-											<li key={item.name} className="dark:bg-[#232329] bg-[#CCCCCC] h-[184px] py-6 px-10 rounded-xl flex flex-col justify-center items-center lg:items-start gap-1">
-												<span className="text-accent">{translate(item.issued)}</span>
-												<h3 className="text-xl text-center lg:text-left text-text-light/80 dark:text-text-dark">{item.name}</h3>
-												<p className="text-text-light/80 dark:text-text-dark/60">{item.issuer}</p>
-											</li>
-										))}
-									</ul>
-								</div>
-							</TabsContent>
-
-							{/* education */}
-							<TabsContent value="education" className="w-full">
-								<div className="flex flex-col gap-[30px] text-center xl:text-left">
-									<h3 className="text-4xl font-bold text-text-light dark:text-text-dark">{translate(education.title)}</h3>
-									<p className="max-w-[600px] text-text-light dark:text-text-dark mx-auto xl:mx-0">
-										{translate(education.description)}
-									</p>
-									<ScrollArea className="h-[400px]">
-										<ul className="grid grid-cols-1 lg:grid-cols-2 gap-[30px]">
-											{education.items.map((item, index) => {
-												return (
-													<li
-														key={index}
-														className="dark:bg-[#232329] bg-[#CCCCCC] h-[300px] py-6 px-10 rounded-xl flex flex-col justify-start items-start lg:items-start gap-1"
-													>
-														<span className="text-accent">{item.duration}</span>
-														<h3 className="text-xl max-w-[260px] min-h-[60px] text-center lg:text-left text-text-light/80 dark:text-text-dark">
-															{translate(item.degree)}
-														</h3>
-														<div className="flex items-center gap-3">
-															{/* dot */}
-															<span
-																className="w-[6px] h-[6px] rounded-full bg-accent"></span>
-															<p className="text-text-light/80 dark:text-text-dark/60">{translate(item.institution)}</p>
-														</div>
-												<p className="mt-4 text-sm text-text-light/70 dark:text-text-dark/70">
-													{translate("credentialAvailableOnRequest")}
-												</p>
-													</li>
-												);
-											})}
-										</ul>
-									</ScrollArea>
-								</div>
-							</TabsContent>
-
-							{/* Favourite Courses */}
-							<TabsContent value="courses" className="w-full">
-								<div className="flex flex-col gap-[30px] text-center xl:text-left">
-									<h3 className="text-4xl font-bold text-text-light dark:text-text-dark">{translate(courses.title)}</h3>
-									<p className="max-w-[600px] text-text-light dark:text-text-dark mx-auto xl:mx-0">
-										{translate(courses.description)}
-									</p>
-									<ScrollArea className="h-[400px]">
-										<ul className="grid grid-cols-1 lg:grid-cols-2 gap-[30px]">
-											{courses.items.map((item, index) => {
-												return (
-													<li
-														key={index}
-														className="dark:bg-[#232329] bg-[#CCCCCC] h-[300px] py-6 px-10 rounded-xl flex flex-col lg:items-start gap-1"
-													>
-														<div className="flex flex-col xl:flex-row items-center gap-8">
-															<Image src={item.icon} alt="" width="196" height="257"
-																   className="items-center"/>
-														</div>
-													</li>
-												);
-											})}
-										</ul>
-									</ScrollArea>
-								</div>
-							</TabsContent>
-
-
-							{/* skills */}
-							<TabsContent value="skills" className="w-full h-full">
-								<div className="flex flex-col gap-[30px]">
-									<div className="flex flex-col gap-[30px] text-center xl:text-left">
-										<h3 className="text-4xl font-bold text-text-light dark:text-text-dark">{translate(skills.title)}</h3>
-										<p className="max-w-[600px] text-text-light dark:text-text-dark mx-auto xl:mx-0">
-											{translate(skills.description1)}
-										</p>
-										<BarExample/>
-									</div>
-
-									<p className="max-w-[600px] text-text-light dark:text-text-dark mx-auto xl:mx-0">
-										{translate(skills.description2)}
-									</p>
-									{Object.keys(skillsByYear).sort((a, b) => b - a).map((year) => (
-										<div key={year} className="mb-8">
-											<h3 className="text-2xl mb-4 text-text-light dark:text-text-dark">{year}</h3>
-											<ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 xl:gap-[30px] ">
-												{skillsByYear[year].map((skill, index) => (
-													<li key={index} onClick={() => handleSkillClick(skill.link)}>
-														<TooltipProvider delayDuration={100}>
-															<Tooltip>
-																<TooltipTrigger
-																	className="w-full h-[150px] rounded-xl flex flex-col justify-center items-center group dark:bg-[#232329] bg-[#CCCCCC] text-text-light dark:text-text-dark"
-																>
-																	<div
-																		className="text-6xl group-hover:text-accent transition-all duration-300">
-																		{skill.icon}
-																	</div>
-																	<p className="mt-2 text-center capitalize">{skill.name}</p> {/* Added skill name */}
-																</TooltipTrigger>
-																<TooltipContent>
-																	<p className="capitalize">{skill.name}</p>
-																</TooltipContent>
-															</Tooltip>
-														</TooltipProvider>
-													</li>
-												))}
-											</ul>
-										</div>
-									))}
-								</div>
-							</TabsContent>
-
-							{/* about */}
-							<TabsContent
-								value="about"
-								className="w-full text-center xl:text-left"
-							>
-								<div className="flex flex-col gap-[30px]">
-									<h3 className="text-4xl font-bold text-text-light dark:text-text-dark">{translate(about.title)}</h3>
-									{/* Typist component for animated description */}
-									<TypingAnimation text={translate(about.description)}/>
-									<ul className="grid grid-cols-1 xl:grid-cols-2 gap-y-6 max-w-[620px] mx-auto xl:mx-0">
-										{about.info.map((item, index) => {
-											return (
-												<li
-													key={index}
-													className="flex items-center justify-center xl:justify-start gap-4"
-												>
-												<span
-													className="text-text-light/60 dark:text-text-dark/60">{translate(item.fieldName)}:</span>
-											<span
-													className="text-xl text-text-light dark:text-text-dark">{translate(item.fieldValue)}</span>
-												</li>
-											);
-										})}
-									</ul>
-								</div>
-							</TabsContent>
-						</div>
-					</Tabs>
-				</div>
-			</motion.div>
-		</>
-	);
-};
-
-export default ResumePage;
+/** Presents the existing career data in accessible tabs and open, readable timelines. */
+export default function ResumePage({embedded = false}) {
+  const {t: translate} = useTranslation('common');
+  const Heading = embedded ? 'h2' : 'h1';
+  return <section className="section resume-section"><div className="shell">
+    <div className="section-heading"><div><p className="section-label">{translate('resumePageTitle')}</p><Heading>{translate('resumeHeadline')}</Heading></div><p>{translate('resumeIntro')}</p></div>
+    <Tabs defaultValue="experience" className="resume-layout">
+      <TabsList className="resume-tabs" aria-label={translate('resumePageTitle')}>
+        {['experience', 'about', 'education', 'certifications', 'skills', 'courses'].map(key => <TabsTrigger value={key} key={key}>{translate(key + 'Tab')}</TabsTrigger>)}
+      </TabsList>
+      <div className="resume-content">
+        <TabsContent value="experience"><h3 className="panel-title">{translate(experience.title)}</h3><ol className="timeline">
+          {experience.items.map(item => <li key={item.company}><span className="timeline-date">{translate(item.duration)}</span><div><h4>{item.company}</h4><p>{translate(item.position)}</p></div></li>)}
+        </ol></TabsContent>
+        <TabsContent value="education"><h3 className="panel-title">{translate(education.title)}</h3><ol className="timeline">
+          {education.items.map(item => <li key={item.degree}><span className="timeline-date">{item.duration}</span><div><h4>{translate(item.degree)}</h4><p>{translate(item.institution)}</p><small>{translate('credentialAvailableOnRequest')}</small></div></li>)}
+        </ol></TabsContent>
+        <TabsContent value="certifications"><h3 className="panel-title">{translate(certifications.title)}</h3><ol className="timeline">
+          {certifications.items.map(item => <li key={item.name}><span className="timeline-date">{translate(item.issued)}</span><div><h4>{item.name}</h4><p>{item.issuer}</p></div></li>)}
+        </ol></TabsContent>
+        <TabsContent value="about"><h3 className="panel-title">{translate(about.title)}</h3><p className="about-copy">{translate(about.description)}</p><dl className="about-facts">
+          {about.info.map(item => <div key={item.fieldName}><dt>{translate(item.fieldName)}</dt><dd>{translate(item.fieldValue)}</dd></div>)}
+        </dl></TabsContent>
+        <TabsContent value="skills"><h3 className="panel-title">{translate(skills.title)}</h3><p className="panel-description">{translate(skills.description1)}</p><BarExample />
+          <p className="panel-description">{translate(skills.description2)}</p>
+          {Object.keys(skillsByYear).sort((a, b) => b - a).map(year => <div className="skill-year" key={year}><h4>{year}</h4><ul className="skill-list">
+            {skillsByYear[year].map((skill, index) => <li key={index}><a href={skill.link} target="_blank" rel="noopener noreferrer">{skill.icon}<span>{skill.name}</span><span className="sr-only"> — {translate('opensInNewTab')}</span></a></li>)}
+          </ul></div>)}
+        </TabsContent>
+        <TabsContent value="courses"><h3 className="panel-title">{translate(courses.title)}</h3><p className="panel-description">{translate(courses.description)}</p><ul className="course-list">
+          {courses.items.map((item, index) => <li key={index}>{item.link ? <a href={item.link} target="_blank" rel="noopener noreferrer" aria-label={translate('openCourse') + ' ' + (index + 1)}><Image src={item.icon} alt={translate('courseCover') + ' ' + (index + 1)} width={196} height={257} /></a> : <Image src={item.icon} alt={translate('courseCover') + ' ' + (index + 1)} width={196} height={257} />}</li>)}
+        </ul></TabsContent>
+      </div>
+    </Tabs>
+  </div></section>;
+}

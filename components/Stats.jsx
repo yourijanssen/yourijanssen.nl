@@ -1,57 +1,9 @@
-import CountUp from "react-countup";
-import {useTranslation} from "next-i18next/pages";
+import {useTranslation} from 'next-i18next/pages';
 
-const stats = [
-  {
-    num: 4,
-    suffix: "+",
-    textKey: "yearsOfExperience",
-  },
-  {
-    num: 20,
-    suffix: "+",
-    textKey: "projectsCompleted",
-  },
-  {
-    num: 10,
-    suffix: "+",
-    textKey: "technologiesMastered",
-  },
-];
-
-const Stats = () => {
-  const { t } = useTranslation('common');
-
-  return (
-      <section className="pt-4 pb-12 xl:pt-0 xl:pb-0">
-        <div className="container mx-auto">
-          <div className="flex flex-wrap gap-6 max-w-[80vw] mx-auto xl:max-w-none">
-            {stats.map((item, index) => {
-              return (
-                  <div
-                      className="flex-1 flex gap-4 items-center justify-center xl:justify-start"
-                      key={index}
-                  >
-                    <CountUp
-                        end={item.num}
-                        suffix={item.suffix}
-                        duration={5}
-                        delay={0}
-                        className="text-4xl xl:text-6xl font-extrabold text-text-light dark:text-text-dark"
-                    />
-                    <div
-                        className={`${
-                            t(item.textKey).length < 15 ? "max-w-[100px]" : "max-w-[150px]"
-                        } leading-snug text-text-light dark:text-text-dark`}
-                    >
-                      {t(item.textKey)}
-                    </div>
-                  </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-  );
-};
-export default Stats;
+/** Renders meaningful statistics immediately, including when motion is disabled. */
+export default function Stats() {
+  const {t} = useTranslation('common');
+  return <div className="shell"><dl className="stats-strip">{[['4+', 'yearsOfExperience'], ['20+', 'projectsCompleted'], ['10+', 'technologiesMastered']].map(([value, key]) =>
+    <div key={key}><dd>{value}</dd><dt>{t(key)}</dt></div>
+  )}</dl></div>;
+}

@@ -3,12 +3,10 @@
   "fullStack": "Full-stack developer",
   "hello": "Hello, I'm",
   "welcome": "Welcome to my portfolio page! Here you'll find information about me and my projects. If you have any questions or would like to get in touch, please visit the contact page.",
-
   "commit": "Page last updated on:",
   "yearsOfExperience": "Years of experience",
   "projectsCompleted": "Projects completed",
   "technologiesMastered": "Technologies mastered",
-
   "Hire": "Hire me",
   "home": "home",
   "services": "services",
@@ -25,14 +23,12 @@
   "workPageTitle": "Work",
   "contactPageTitle": "Contact",
   "footerDescription": "Portfolio of Youri Janssen",
-
   "long": "Long-term employment",
   "longdes": "Depending on my current employment situation, I may be available to join your team as a full-stack developer. View my resume or contact me to determine whether I would be a good fit for the position you are looking to fill.",
   "custom": "Custom Website Development",
   "customdes": "I offer custom website development tailored to your needs. My services include:<br/><br/>\n    - Initial development, with costs and maintenance fees based on the complexity of the project.<br/>\n    - A domain name of your choice.<br/>\n    - An email service for customer inquiries through the contact page.<br/>\n    - Tools to monitor website traffic and performance.<br/>\n    - Development on top of existing projects.<br/><br/>\n    I can also provide several design proposals so you can select the one that best suits your preferences.",
   "interface": "User Interface Design",
   "interfacedes": "If you want a custom, unique design for your website, I can create it for you in Figma.",
-
   "bim": "BIM Salesviewer",
   "bimdes": "This was my graduation project for my two-year Software Development program. BIM, or Building Information Modeling, involves creating and managing digital representations of the physical and functional characteristics of buildings and other assets. I developed a tool that made this process more accessible to the product owner's customers.",
   "ticket": "Support Ticket System",
@@ -51,7 +47,6 @@
   "currentBackendSkills": "Current backend skills",
   "currentFrontendSkills": "Current frontend skills",
   "proficiency": "Proficiency",
-
   "Email": "Email",
   "Location": "Location",
   "Name": "Name",
@@ -59,14 +54,12 @@
   "Nationality": "Nationality",
   "Status": "Status",
   "Languages": "Languages",
-
   "skillsTab": "Skills",
   "aboutTab": "About me",
   "experienceTab": "Experience",
   "educationTab": "Education",
   "certificationsTab": "Certifications",
   "coursesTab": "Courses",
-
   "HVA": "Amsterdam University of Applied Sciences",
   "HKU": "Utrecht School of the Arts",
   "associateSoftwareDevelopment": "Associate Degree in Software Development",
@@ -75,7 +68,6 @@
   "vwoDegree": "Pre-university secondary education (VWO)",
   "havoDegree": "Senior general secondary education (HAVO)",
   "examBoard": "Board of Tests and Examinations",
-
   "About": "About Me",
   "Aboutdes": "Hi! My name is Youri Janssen and I am a full-stack developer working as a PHP Developer at WOW media. After completing my Associate's degree in Software Development at the Amsterdam University of Applied Sciences, I worked as a DevOps trainee at Working Talent and as an Identity & Access Management Engineer at DICTU. Before moving into software development, I completed a Bachelor of Arts in Arts & Economics at HKU. I hold the Professional Scrum Master I certification and enjoy building reliable, accessible web applications.",
   "experienceValue": "4 years",
@@ -102,9 +94,28 @@
   "skillsdes": "This overview compares the main development skills I have worked with and my current proficiency in each:",
   "skillsdes2": "Here is a list of all skills I have acquired so far, categorized by each year:",
   "courses": "Favourite Courses",
-  "coursesdes": "Here is a comprehensive list of courses that have significantly contributed to my learning over the years:"
-
-
-
-
+  "coursesdes": "Here is a comprehensive list of courses that have significantly contributed to my learning over the years:",
+  "heroTitle": "Thoughtful code.",
+  "heroTitleAccent": "Meaningful experiences.",
+  "heroIntro": "I’m Youri, a full-stack developer in Amsterdam. I turn complex ideas into reliable, accessible web experiences.",
+  "exploreWork": "Explore my work",
+  "portraitAlt": "Portrait of Youri Janssen",
+  "mainNavigation": "Main navigation",
+  "selectLanguage": "Select language",
+  "skipToContent": "Skip to content",
+  "backToTop": "Back to top",
+  "workHeadline": "A selection of my work.",
+  "workIntro": "From interactive building models to everyday business tools. A look at the projects I’ve helped bring to life.",
+  "viewAllProjects": "View all projects",
+  "projectDetails": "About this project",
+  "resumeHeadline": "A little more about me.",
+  "resumeIntro": "A background in arts and economics. A focus on software. Always curious about what comes next.",
+  "servicesHeadline": "Let’s make it work.",
+  "servicesIntro": "Thoughtful design and reliable development, from the first idea to the next iteration.",
+  "contactHeadline": "Have something in mind?",
+  "contactIntro": "An interesting project, a new opportunity or simply a good conversation. I’d love to hear from you.",
+  "sendEmail": "Send an email",
+  "discussService": "Discuss this service",
+  "openCourse": "Open course",
+  "courseCover": "Course cover"
 }

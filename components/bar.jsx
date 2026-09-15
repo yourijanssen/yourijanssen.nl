@@ -10,6 +10,7 @@ import {
 	Legend,
 } from 'chart.js';
 import {useTranslation} from "next-i18next/pages";
+import {useDarkMode} from '@/context/DarkModeContext';
 
 // Register the required components
 ChartJS.register(
@@ -90,19 +91,31 @@ const options = {
 
 const BarExample = () => {
 	const {t} = useTranslation('common');
+	const {isDarkMode} = useDarkMode();
+	const labelColor = isDarkMode ? '#b7c5d4' : '#596575';
+	const gridColor = isDarkMode ? '#344354' : '#d6dce1';
+	const themedOptions = {
+		...options,
+		animation: false,
+		plugins: {...options.plugins, legend: {...options.plugins.legend, labels: {color: labelColor}}},
+		scales: {
+			x: {...options.scales.x, grid: {color: gridColor}, ticks: {color: labelColor}},
+			y: {...options.scales.y, grid: {color: gridColor}, ticks: {color: labelColor}},
+		},
+	};
 
 	return <>
 		<div style={{maxWidth: '800px'}}>
 			<div style={{marginBottom: '20px'}}>
 				<h2 className="text-text-light dark:text-text-dark">{t('currentBackendSkills')}</h2>
 				<div style={{height: '300px'}}>
-					<Bar data={backend(t('proficiency'))} options={options}/>
+					<Bar data={backend(t('proficiency'))} options={themedOptions}/>
 				</div>
 			</div>
 			<div>
 				<h2 className="text-text-light dark:text-text-dark">{t('currentFrontendSkills')}</h2>
 				<div style={{height: '300px'}}>
-					<Bar data={frontend(t('proficiency'))} options={options}/>
+					<Bar data={frontend(t('proficiency'))} options={themedOptions}/>
 				</div>
 			</div>
 		</div>
