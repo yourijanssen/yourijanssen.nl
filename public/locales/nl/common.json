@@ -1,5 +1,6 @@
 {
   "title": "Youri Janssen",
+  "amsterdam": "Amsterdam",
   "fullStack": "Full-stack ontwikkelaar",
   "hello": "Hallo ik ben",
   "welcome": "Welkom op mijn portfoliopagina! Hier vind je informatie over mij en mijn projecten. Heb je vragen of wil je contact opnemen? Bekijk dan de contactpagina.",
@@ -114,7 +115,7 @@
   "coursesdes": "Hier is een uitgebreide lijst van cursussen die in de loop der jaren aanzienlijk hebben bijgedragen aan mijn leerproces:",
   "heroTitle": "Doordachte code.",
   "heroTitleAccent": "Waardevolle ervaringen.",
-  "heroIntro": "Ik ben Youri, full-stack developer uit Amsterdam. Ik vertaal complexe ideeën naar betrouwbare, toegankelijke webervaringen.",
+  "heroIntro": "Ik ben Youri, full-stack developer uit Amsterdam. Ik bouw websites en webapplicaties die passen bij jouw bedrijf: van een eenvoudige website als online visitekaartje voor je kleine onderneming tot een intranet waarop je team dagelijks informatie beheert in een CMS (contentmanagementsysteem).",
   "exploreWork": "Bekijk mijn werk",
   "portraitAlt": "Portret van Youri Janssen",
   "portraitYear": "Foto uit {{year}}",

@@ -1,5 +1,6 @@
 {
   "title": "Youri Janssen",
+  "amsterdam": "Amsterdam",
   "fullStack": "Full-stack developer",
   "hello": "Hello, I'm",
   "welcome": "Welcome to my portfolio page! Here you'll find information about me and my projects. If you have any questions or would like to get in touch, please visit the contact page.",
@@ -114,7 +115,7 @@
   "coursesdes": "Here is a comprehensive list of courses that have significantly contributed to my learning over the years:",
   "heroTitle": "Thoughtful code.",
   "heroTitleAccent": "Meaningful experiences.",
-  "heroIntro": "I’m Youri, a full-stack developer from Amsterdam. I turn complex ideas into reliable, accessible web experiences.",
+  "heroIntro": "I’m Youri, a full-stack developer from Amsterdam. I build websites and web applications around your business: from a simple website that introduces your small business to an intranet where your team manages information daily in a CMS (content management system).",
   "exploreWork": "Explore my work",
   "portraitAlt": "Portrait of Youri Janssen",
   "portraitYear": "Photo taken in {{year}}",

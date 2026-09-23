@@ -5,14 +5,16 @@ import {execFileSync} from 'node:child_process';
 
 const english = JSON.parse(readFileSync(new URL('../public/locales/en/common.json', import.meta.url)));
 const dutch = JSON.parse(readFileSync(new URL('../public/locales/nl/common.json', import.meta.url)));
+const greek = JSON.parse(readFileSync(new URL('../public/locales/el/common.json', import.meta.url)));
 
-test('English and Dutch expose the same non-empty translation keys', () => {
-	assert.deepEqual(Object.keys(english).sort(), Object.keys(dutch).sort());
-
-	for (const [key, value] of Object.entries(english)) {
-		assert.equal(typeof value, 'string', `English translation ${key} must be text`);
-		assert.notEqual(value.trim(), '', `English translation ${key} must not be empty`);
-		assert.notEqual(dutch[key].trim(), '', `Dutch translation ${key} must not be empty`);
+test('every language exposes the same non-empty keys and interpolation variables', () => {
+	for (const [locale, translations] of Object.entries({en: english, nl: dutch, el: greek})) {
+		assert.deepEqual(Object.keys(translations).sort(), Object.keys(english).sort());
+		for (const [key, value] of Object.entries(translations)) {
+			assert.equal(typeof value, 'string', `${locale}: ${key} must be text`);
+			assert.notEqual(value.trim(), '', `${locale}: ${key} must not be empty`);
+			assert.deepEqual(value.match(/\{\{[^}]+\}\}/g) || [], english[key].match(/\{\{[^}]+\}\}/g) || [], `${locale}: ${key} interpolation variables must match`);
+		}
 	}
 });
 

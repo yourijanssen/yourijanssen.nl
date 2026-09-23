@@ -5,7 +5,7 @@ import {useTranslation} from 'next-i18next/pages';
 const projects = [
 	{
 		id: "de-zorgheuvel-intranet",
-		endDate: null,
+		endDate: "2026-04",
 		category: "deZorgheuvelIntranet",
 		description: "deZorgheuvelIntranetDescription",
 		type: "intranetDevelopment",

@@ -46,11 +46,11 @@ h1, h2, h3, h4 { font-weight: 600; line-height: 1.12; letter-spacing: -.045em; }
 .main-nav { display: flex; align-items: center; gap: 30px; }
 .main-nav a { position: relative; font-size: 14px; text-transform: capitalize; padding: 12px 0; }
 .main-nav a::after { content: ""; position: absolute; bottom: 3px; left: 0; width: 100%; height: 2px; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform .2s; }
-.main-nav a:hover::after, .main-nav a[aria-current]::after { transform: scaleX(1); }
+.main-nav a:hover::after, .main-nav a:focus-visible::after, .main-nav a[aria-current]::after { transform: scaleX(1); }
 .header-tools { display: flex; align-items: center; gap: 16px; padding-left: 24px; border-left: 1px solid var(--line); }
 .locale-select { background: var(--page); color: var(--ink); font-size: 13px; padding: 8px 2px; border: 0; }
 .locale-select:focus { outline: none; }
-.locale-select:focus-visible { background: var(--accent-soft); box-shadow: 0 2px 0 var(--accent); }
+.locale-select:focus-visible { background: var(--page); box-shadow: 0 2px 0 var(--accent); }
 .icon-button { display: grid; place-items: center; width: 38px; height: 38px; border: 1px solid var(--line); border-radius: 50%; color: var(--ink); background: transparent; }
 .icon-button svg { width: 18px; height: 18px; }
 .icon-button:hover { background: var(--accent-soft); border-color: var(--accent); }
@@ -176,6 +176,7 @@ details[open] .details-minus { display: block; }
 .site-footer { background: var(--page); }
 .footer-inner { display: flex; align-items: center; gap: 24px; padding-block: 30px; }
 .footer-inner .wordmark { font-size: 24px; }
+.footer-updated { display: block; margin-top: 4px; font-size: 11px; color: var(--muted); }
 .footer-inner p, .footer-inner > a:last-child { font-size: 12px; color: var(--muted); }
 .footer-inner > a:last-child { margin-left: auto; display: flex; align-items: center; gap: 8px; }
 .skip-link { position: fixed; left: 20px; top: -100px; padding: 12px 20px; background: var(--accent); color: var(--page); z-index: 100; }
@@ -257,7 +258,20 @@ details[open] .details-minus { display: block; }
 }
 /* Shared motion uses the same palette and behavior in both themes. */
 .counting-value { display: inline-block; font-variant-numeric: tabular-nums; }
+/* Interactive surfaces share keyboard feedback and theme-aware accent colors. */
+.client-project:focus-within, .service-row:focus-within { background: var(--accent-soft); }
+.skill-list a:focus-visible, .mobile-drawer nav a:focus-visible { background: var(--accent-soft); }
+.button, .icon-button, .social-link { transition: transform .25s, box-shadow .25s, background-color .25s, border-color .25s; }
+.button:focus-visible { box-shadow: 0 6px 22px color-mix(in srgb, var(--accent) 22%, transparent); }
+.resume-tabs button span:last-child, .mobile-drawer nav svg, .icon-button svg, .wordmark span { display: inline-block; transition: transform .3s cubic-bezier(.22,1,.36,1); }
+@media (hover: hover) {
+  .main-nav a:hover, .main-nav a:focus-visible { color: var(--accent); }
+  .client-project:has(a):hover, .service-row:hover { background: var(--accent-soft); }
+}
 @media (prefers-reduced-motion: no-preference) {
+  .resume-tabs button:is(:hover, :focus-visible) span:last-child { transform: translateX(4px); }
+  .mobile-drawer nav a:is(:hover, :focus-visible) svg { transform: translate(4px, -4px); }
+  .mobile-drawer nav a:active { transform: scale(.98); }
   .project, .client-project, .service-row, .course-list li, .skill-list a, .stats-strip > div {
     transition: transform .3s ease, background-color .3s ease, border-color .3s ease;
   }
@@ -269,6 +283,9 @@ details[open] .details-minus { display: block; }
   @keyframes details-enter { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: translateY(0); } }
 }
 @media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .button:hover { box-shadow: 0 8px 24px color-mix(in srgb, var(--accent) 24%, transparent); }
+  .icon-button:hover svg { transform: rotate(18deg); }
+  .wordmark:hover span { transform: translateY(-5px) scale(1.4); }
   .project:hover, .course-list li:hover { transform: translateY(-6px); }
   .client-project:hover, .service-row:hover { transform: translateX(5px); }
   .dark .client-project:hover, .dark .service-row:hover { background: var(--accent-soft); }
@@ -279,5 +296,6 @@ details[open] .details-minus { display: block; }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
+  .button:hover, .button:active, .round-link:hover, .contact-arrow:hover, .social-link:hover { transform: none; }
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
 }

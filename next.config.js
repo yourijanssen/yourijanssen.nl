@@ -3,7 +3,7 @@ const nextConfig = {
   reactStrictMode: true,
 	poweredByHeader: false,
   i18n: {
-    locales: ['en', 'nl'],
+    locales: ['en', 'nl', 'el'],
     defaultLocale: 'en',
 		// Domain-based locale routing is production-only; locally, path locales prevent hydration mismatches.
     domains: process.env.NODE_ENV === 'production' ? [

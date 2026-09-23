@@ -8,7 +8,9 @@ export const navigation = [['work', '/work'], ['resume', '/resume'], ['services'
 export default function Nav() {
   const {pathname} = useRouter();
   const {t} = useTranslation('common');
-  return <nav className="main-nav" aria-label={t('mainNavigation')}>{navigation.map(([key, href]) =>
-    <Link href={href} key={key} aria-current={pathname === href ? 'page' : undefined}>{t(key)}</Link>
-  )}</nav>;
+  return <nav className="main-nav" aria-label={t('mainNavigation')}>
+    {navigation.map(([key, href]) =>
+      <Link href={href} key={key} aria-current={pathname === href ? 'page' : undefined}>{t(key)}</Link>
+    )}
+  </nav>;
 }

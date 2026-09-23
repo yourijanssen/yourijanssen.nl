@@ -1,9 +1,10 @@
 import {useEffect, useState} from "react";
 import {useTranslation} from "next-i18next/pages";
 
+/** Displays the last release commit time using the active language. */
 export const Commit = () => {
 	const [commitDate, setCommitDate] = useState('');
-	const {t} = useTranslation('common');
+	const {t, i18n} = useTranslation('common');
 
 
 	useEffect(() => {
@@ -26,16 +27,12 @@ export const Commit = () => {
 		return () => controller.abort();
 	}, []);
 
-	return (
-		<>
-			<div className="container mx-auto xl:text-left">
-				{commitDate ? (
-					<p className="text-text-light dark:text-text-dark">
-						{t('commit')} {commitDate}
-					</p>
-				) : null}
-			</div>
-		</>
-	)
+	const date = new Date(commitDate);
+	if (!commitDate || Number.isNaN(date.getTime())) return null;
+	const label = new Intl.DateTimeFormat(i18n.language || 'en', {
+		year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit',
+		timeZone: 'Europe/Amsterdam', timeZoneName: 'short',
+	}).format(date);
+	return <small className="footer-updated">{t('commit')} <time dateTime={commitDate}>{label}</time></small>;
 
 }
