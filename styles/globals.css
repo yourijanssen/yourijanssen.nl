@@ -65,6 +65,18 @@ h1, h2, h3, h4 { font-weight: 600; line-height: 1.12; letter-spacing: -.045em; }
 .button-primary:hover { background: #193ca7; transform: translateY(-2px); }
 .button-secondary { color: var(--accent); background: transparent; }
 .button-secondary:hover { background: var(--accent-soft); transform: translateY(-2px); }
+.not-found { min-height: calc(100vh - 96px); display: grid; grid-template-columns: minmax(0, 1fr) minmax(220px, .5fr); gap: 64px; align-items: center; padding-block: 80px; }
+.not-found-copy { max-width: 650px; }
+.not-found-code { font-size: clamp(124px, 20vw, 280px); line-height: .78; font-weight: 700; letter-spacing: -.1em; color: var(--ink); }
+.not-found h1 { font-size: clamp(38px, 4.8vw, 68px); margin-top: 36px; }
+.not-found h1 + p { max-width: 480px; margin-top: 20px; color: var(--muted); font-size: 18px; }
+.not-found-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+.not-found-marker { position: relative; justify-self: center; width: min(25vw, 320px); aspect-ratio: 1; border-left: 2px solid var(--accent); }
+.not-found-marker::before { content: ""; position: absolute; top: 50%; left: -9px; width: 16px; height: 16px; background: var(--accent); border-radius: 50%; transform: translateY(-50%); }
+.not-found-marker span, .not-found-marker i { position: absolute; display: block; border: 2px solid var(--accent); border-left: 0; border-radius: 0 999px 999px 0; opacity: .9; }
+.not-found-marker span { inset: 16% 0 16% 0; border-style: dashed; }
+.not-found-marker i:first-of-type { inset: 31% 21% 31% 0; border-style: dashed; }
+.not-found-marker i:last-of-type { display: none; }
 .portrait { width: 100%; max-width: 420px; justify-self: end; }
 .portrait-image { position: relative; aspect-ratio: 1; overflow: hidden; background: #fff; border-radius: 50%; }
 .portrait-image img { object-fit: contain; }
@@ -214,6 +226,11 @@ details[open] .details-minus { display: block; }
   .hero h1 { font-size: clamp(40px,10.5vw,66px); }
   .hero-copy > p { font-size: 17px; margin-top: 24px; }
   .hero-actions { margin-top: 26px; gap: 10px; }
+  .not-found { min-height: calc(100svh - 76px); grid-template-columns: 1fr; gap: 42px; padding-block: 62px; }
+  .not-found-code { font-size: clamp(112px, 36vw, 180px); }
+  .not-found h1 { margin-top: 28px; }
+  .not-found h1 + p { font-size: 16px; }
+  .not-found-marker { justify-self: start; width: min(58vw, 250px); }
   .button { padding: 12px 16px; min-height: 48px; font-size: 13px; }
   .portrait { max-width: none; }
   .portrait-image { aspect-ratio: 1; }

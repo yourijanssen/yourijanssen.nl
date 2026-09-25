@@ -136,5 +136,9 @@
   "sendEmail": "Send an email",
   "discussService": "Discuss this service",
   "openCourse": "Open course",
-  "courseCover": "Course cover"
+  "courseCover": "Course cover",
+  "notFoundTitle": "This page is not here.",
+  "notFoundIntro": "The link may be outdated, or the page may have moved.",
+  "notFoundHome": "Back to home",
+  "notFoundWork": "View my work"
 }

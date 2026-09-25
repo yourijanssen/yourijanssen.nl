@@ -136,5 +136,9 @@
   "sendEmail": "Stuur een e-mail",
   "discussService": "Bespreek deze dienst",
   "openCourse": "Open cursus",
-  "courseCover": "Cursusomslag"
+  "courseCover": "Cursusomslag",
+  "notFoundTitle": "Deze pagina bestaat niet.",
+  "notFoundIntro": "De link kan verouderd zijn, of de pagina is mogelijk verplaatst.",
+  "notFoundHome": "Terug naar home",
+  "notFoundWork": "Bekijk mijn werk"
 }
