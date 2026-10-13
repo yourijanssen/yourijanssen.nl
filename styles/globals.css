@@ -122,7 +122,7 @@ h1, h2, h3, h4 { font-weight: 600; line-height: 1.12; letter-spacing: -.045em; }
 details[open] .details-minus { display: block; }
 .project-details > p { color: var(--muted); font-size: 15px; padding-top: 18px; }
 .client-projects { margin-top: 42px; border-top: 1px solid var(--line); }
-.client-project { padding: 26px 0; border-bottom: 1px solid var(--line); display: grid; grid-template-columns: 48px 1fr 210px; gap: 24px; align-items: start; }
+.client-project { padding: 26px 24px; border-bottom: 1px solid var(--line); display: grid; grid-template-columns: 48px minmax(0, 1fr) 210px; gap: 24px; align-items: start; }
 .project-index { font-family: var(--font-jetbrainsMono); font-size: 12px; color: var(--muted); padding-top: 5px; }
 .client-project h3 { font-size: 22px; letter-spacing: -.035em; }
 .client-project h3 a { display: flex; align-items: center; gap: 16px; width: fit-content; }
@@ -252,7 +252,7 @@ details[open] .details-minus { display: block; }
   .project h3 { font-size: 25px; }
   .project-meta { font-size: 10px; }
   .client-projects { margin-top: 32px; }
-  .client-project { gap: 12px; padding-block: 23px; }
+  .client-project { gap: 12px; padding: 23px 16px; }
   .client-project h3 { font-size: 21px; }
   .resume-layout { grid-template-columns: 1fr; gap: 32px; }
   .resume-tabs { flex-direction: row; flex-wrap: wrap; gap: 8px; border-right: 0; border-bottom: 1px solid var(--line); padding: 0 0 12px; }
