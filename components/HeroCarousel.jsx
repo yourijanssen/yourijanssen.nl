@@ -4,17 +4,17 @@ import {useTranslation} from 'next-i18next/pages';
 import Photo from './Photo';
 import CodeProfile from './CodeProfile';
 
-/** Cycles the portrait and code every six seconds, with direct controls and an optional pause. */
+/** Shows the portrait for 70% and code for 30% of each twelve-second automatic cycle. */
 export default function HeroCarousel() {
   const {t} = useTranslation('common');
   const [slide, setSlide] = useState(0);
   const [paused, setPaused] = useState(false);
   const labels = [t('heroPortraitSlide'), t('heroCodeSlide')];
 
-  // Restart the six-second interval after a manual change; clean up on pause or unmount.
+  // Restart the selected slide's duration after manual changes; clean up on pause or unmount.
   useEffect(() => {
     if (paused) return;
-    const timer = window.setTimeout(() => setSlide(current => 1 - current), 6000);
+    const timer = window.setTimeout(() => setSlide(current => 1 - current), slide === 0 ? 8400 : 3600);
     return () => window.clearTimeout(timer);
   }, [slide, paused]);
 

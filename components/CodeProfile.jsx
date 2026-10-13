@@ -23,7 +23,6 @@ export default function CodeProfile() {
     role: t('codeFullStackEngineer'),
     location: t('amsterdam'),
     email: 'yourijanssen123@gmail.com',
-    phone: '+31647223984',
     website: 'https://yourijanssen.nl',
     remote: true,
     hoursPerWeek: t('codeWorkingHours'),

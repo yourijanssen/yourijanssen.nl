@@ -91,6 +91,12 @@ body:has(.engineer-hero) { background-image: linear-gradient(to bottom right, tr
 .engineer-hero::after, .engineer-hero h1::after { content: none; }
 .engineer-hero h1 { font-size: clamp(44px, 4.65vw, 70px); line-height: 1.08; letter-spacing: -.055em; }
 .engineer-hero .hero-copy > p { font-size: 18px; max-width: 550px; }
+/* Reserve the full paragraph height so typing never moves the buttons or carousel. */
+.typed-intro { display: grid; }
+.typing-layout, .typing-output { grid-area: 1 / 1; }
+.typing-layout { visibility: hidden; user-select: none; }
+.typing-output.is-typing::after { content: "▍"; display: inline-block; width: 0; color: var(--accent); animation: typing-cursor .8s steps(1, end) infinite; }
+@keyframes typing-cursor { 50% { opacity: 0; } }
 .engineer-hero .hero-actions { max-width: 550px; }
 .engineer-hero .hero-social-links { flex-basis: 100%; margin: 6px 0 0; padding: 0; border: 0; }
 /* Editor surfaces and syntax follow the site's appearance selection. */

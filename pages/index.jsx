@@ -11,6 +11,7 @@ import ResumePage from '@/components/page-components/ResumePage';
 import ServicesPage from '@/components/page-components/ServicesPage';
 import ContactPage from '@/components/page-components/ContactPage';
 import Social from '@/components/Social';
+import TypedIntro from '@/components/TypedIntro';
 
 /** Introduces the portfolio with real work and a clear path to contact. */
 export default function Home() {
@@ -19,7 +20,7 @@ export default function Home() {
     <Head><title>Youri Janssen | {t('softwareEngineer')}</title><meta name="description" content={t('heroIntro')} /></Head>
     <section className="hero engineer-hero shell"><div className="hero-copy">
       <h1>{t('heroTitle')}<br /><span>{t('heroTitleAccent')}</span></h1>
-      <p>{t('heroIntro')}</p>
+      <p><TypedIntro text={t('heroIntro')} /></p>
       <div className="hero-actions"><Link className="button button-primary" href="/work">{t('exploreWork')}<ArrowUpRight size={18} /></Link><CVDownload /><Social containerStyles="hero-social-links" iconStyles="hero-social-link" /></div>
     </div><HeroCarousel /></section>
     <Stats />
