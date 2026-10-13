@@ -696,7 +696,7 @@ export default function ResumePage({embedded = false}) {
     <div className="section-heading"><div><p className="section-label">{translate('resumePageTitle')}</p><Heading>{translate('resumeHeadline')}</Heading></div><p>{translate('resumeIntro')}</p></div>
     <Tabs defaultValue="experience" className="resume-layout">
       <TabsList className="resume-tabs" aria-label={translate('resumePageTitle')}>
-        {['experience', 'about', 'education', 'certifications', 'skills', 'courses'].map(key => <TabsTrigger value={key} key={key}><span>{translate(key + 'Tab')}</span><span aria-hidden="true">→</span></TabsTrigger>)}
+        {['experience', 'education', 'about', 'certifications', 'skills', 'courses'].map((key, index) => <TabsTrigger value={key} key={key} style={{'--tab-rank': index}}><span>{translate(key + 'Tab')}</span><span aria-hidden="true">→</span></TabsTrigger>)}
       </TabsList>
       <div className="resume-content">
         <TabsContent value="experience"><h3 className="panel-title">{translate(experience.title)}</h3><ol className="timeline">

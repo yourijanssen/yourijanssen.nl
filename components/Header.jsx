@@ -8,7 +8,7 @@ import {Code2} from 'lucide-react';
 /** Keeps navigation and appearance controls consistent across every page. */
 export default function Header() {
   return <header className="site-header"><div className="shell header-inner">
-    <Link href="/" className="wordmark" aria-label="Youri Janssen"><Code2 size={24} aria-hidden="true" />Youri<span>.</span></Link>
+    <Link href="/" className="wordmark" aria-label="Youri Janssen"><Code2 size={24} aria-hidden="true" /><span className="wordmark-name">Youri</span><span className="wordmark-dot">.</span></Link>
     <div className="desktop-nav"><Nav /></div>
     <div className="header-tools"><LocaleSwitcher /><DarkModeToggle /><div className="mobile-nav"><MobileNav /></div></div>
   </div></header>;

@@ -122,6 +122,8 @@
   "codeWebApplications": "Web applications",
   "codeAiAgents": "AI agents",
   "codeProfileTabs": "Explore my profile, stack and projects",
+  "codeEditLabel": "Edit {{file}} — changes are temporary",
+  "codeEditHint": "Try editing this code. Changes are not saved or executed and reset when you refresh.",
   "codeViewProfile": "View my profile",
   "heroCarouselLabel": "Youri in person and in code",
   "heroCarouselDescription": "carousel",

@@ -122,6 +122,8 @@
   "codeWebApplications": "Webapplicaties",
   "codeAiAgents": "AI-agenten",
   "codeProfileTabs": "Bekijk mijn profiel, stack en projecten",
+  "codeEditLabel": "Bewerk {{file}} — wijzigingen zijn tijdelijk",
+  "codeEditHint": "Probeer deze code te bewerken. Wijzigingen worden niet opgeslagen of uitgevoerd en verdwijnen na verversen.",
   "codeViewProfile": "Bekijk mijn profiel",
   "heroCarouselLabel": "Youri in beeld en in code",
   "heroCarouselDescription": "carrousel",

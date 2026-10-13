@@ -15,7 +15,7 @@ export default function MobileNav() {
     <SheetTrigger asChild><button className="icon-button" aria-label={t('openMenu')}><Menu size={21} /></button></SheetTrigger>
     <SheetContent className="mobile-drawer" closeLabel={t('closeMenu')} aria-describedby={undefined}>
       <SheetTitle className="sr-only">{t('mainNavigation')}</SheetTitle>
-      <Link href="/" className="wordmark" onClick={() => setOpen(false)}>Youri<span>.</span></Link>
+      <Link href="/" className="wordmark" onClick={() => setOpen(false)}><span className="wordmark-name">Youri</span><span className="wordmark-dot">.</span></Link>
       <nav aria-label={t('mainNavigation')}>{navigation.map(([key, href]) =>
         <Link href={href} key={key} aria-current={pathname === href ? 'page' : undefined} onClick={() => setOpen(false)}>{t(key)}<ArrowUpRight size={24} /></Link>
       )}</nav>

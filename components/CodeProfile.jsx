@@ -6,16 +6,34 @@ import {portfolioStack} from '@/lib/portfolio-stack';
 
 const files = ['profile.ts', 'stack.json', 'projects.ts'];
 
-/** Highlights a small, read-only code sample without downloading an editor library. */
+/** Highlights plain text without executing code or downloading an editor library. */
 function CodeLine({text}) {
   return text.split(/("(?:[^"\\]|\\.)*"|\b(?:const|export|default)\b)/g).map((part, index) =>
     <span key={index} className={part.startsWith('"') ? 'code-string' : /^(const|export|default)$/.test(part) ? 'code-keyword' : undefined}>{part}</span>
   );
 }
 
+/** Keeps edits in memory and overlays a native input on the highlighted code. */
+function EditableSample({lines, label, hint}) {
+  const [draft, setDraft] = useState(null);
+  const highlight = useRef(null);
+  const text = draft ?? lines.join('\n');
+
+  /** Synchronizes the highlighted text and line numbers with native input scrolling. */
+  function syncScroll(event) {
+    highlight.current.scrollTop = event.currentTarget.scrollTop;
+    highlight.current.scrollLeft = event.currentTarget.scrollLeft;
+  }
+
+  return <>
+    <pre ref={highlight} className="editor-highlight" aria-hidden="true"><code>{text.split('\n').map((line, number) => <span className="editor-line" key={number}><span className="line-number">{number + 1}</span><span><CodeLine text={line || ' '} />{'\n'}</span></span>)}</code></pre>
+    <textarea className="editor-input" aria-label={label} title={hint} value={text} onChange={event => setDraft(event.target.value)} onScroll={syncScroll} spellCheck={false} autoComplete="off" autoCorrect="off" autoCapitalize="off" wrap="off" />
+  </>;
+}
+
 /** Presents real portfolio information as accessible, keyboard-operable code tabs. */
 export default function CodeProfile() {
-  const {t} = useTranslation('common');
+  const {t, i18n} = useTranslation('common');
   const [activeFile, setActiveFile] = useState(0);
   const tabRefs = useRef([]);
   const profile = {
@@ -70,8 +88,8 @@ export default function CodeProfile() {
     <div className="editor-tabs" role="tablist" aria-label={t('codeProfileTabs')}>
       {files.map((file, index) => <button key={file} ref={element => {tabRefs.current[index] = element;}} type="button" role="tab" id={`code-tab-${index}`} aria-controls={`code-panel-${index}`} aria-selected={index === activeFile} tabIndex={index === activeFile ? 0 : -1} onClick={() => setActiveFile(index)} onKeyDown={event => handleTabKey(event, index)}><FileCode2 size={14} aria-hidden="true" />{file}</button>)}
     </div>
-    {samples.map((lines, index) => <div key={files[index]} role="tabpanel" id={`code-panel-${index}`} aria-labelledby={`code-tab-${index}`} hidden={index !== activeFile} tabIndex={0} className="editor-panel">
-      <pre><code>{lines.map((line, number) => <span className="editor-line" key={number}><span className="line-number" aria-hidden="true">{number + 1}</span><span><CodeLine text={line} />{'\n'}</span></span>)}</code></pre>
+    {samples.map((lines, index) => <div key={files[index]} role="tabpanel" id={`code-panel-${index}`} aria-labelledby={`code-tab-${index}`} hidden={index !== activeFile} className="editor-panel editor-editable">
+      <EditableSample key={`${files[index]}:${i18n.language}`} lines={lines} label={t('codeEditLabel', {file: files[index]})} hint={t('codeEditHint')} />
     </div>)}
     <div className="editor-status"><span>{activeFile === 1 ? 'JSON' : 'TypeScript'}</span><span>UTF-8</span><Link href={activeFile === 2 ? '/work' : '/resume'}>{t(activeFile === 2 ? 'viewAllProjects' : 'codeViewProfile')}<ArrowUpRight size={12} aria-hidden="true" /></Link></div>
   </div>;
