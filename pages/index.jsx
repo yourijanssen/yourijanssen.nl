@@ -10,6 +10,7 @@ import WorkPage from '@/components/page-components/WorkPage';
 import ResumePage from '@/components/page-components/ResumePage';
 import ServicesPage from '@/components/page-components/ServicesPage';
 import ContactPage from '@/components/page-components/ContactPage';
+import Social from '@/components/Social';
 
 /** Introduces the portfolio with real work and a clear path to contact. */
 export default function Home() {
@@ -19,7 +20,7 @@ export default function Home() {
     <section className="hero shell"><div className="hero-copy">
       <h1>{t('heroTitle')}<br /><span>{t('heroTitleAccent')}</span></h1>
       <p>{t('heroIntro')}</p>
-      <div className="hero-actions"><Link className="button button-primary" href="/work">{t('exploreWork')}<ArrowUpRight size={18} /></Link><CVDownload /></div>
+      <div className="hero-actions"><Link className="button button-primary" href="/work">{t('exploreWork')}<ArrowUpRight size={18} /></Link><CVDownload /><Social containerStyles="hero-social-links" iconStyles="hero-social-link" /></div>
     </div><Photo /></section>
     <Stats />
     <WorkPage embedded />
