@@ -139,14 +139,19 @@ export default function WorkPage({embedded = false}) {
     <div className="section-heading"><div><p className="section-label">{t('workPageTitle')}</p><Heading>{t('workHeadline')}</Heading></div>
       {embedded ? <Link className="text-link" href="/work">{t('viewAllProjects')}<ArrowUpRight size={17} /></Link> : <p>{t('workIntro')}</p>}
     </div>
-    <div className="project-timeline">{visibleProjects.map((project, index) => <article className="client-project" key={project.id}>
-      <span className="project-index">{String(index + 1).padStart(2, '0')}</span>
-      <div>
-        <h3>{project.live ? <a href={project.live} target="_blank" rel="noopener noreferrer">{t(project.category)}<ArrowUpRight size={21} /><span className="sr-only"> — {t('opensInNewTab')}</span></a> : t(project.category)}</h3>
-        <ProjectStatus project={project} />
-        <p>{t(project.description)}</p>
-      </div>
-      <span className="project-type">{project.live ? t(project.type || 'websiteManagement') : project.stack.map(item => item.name).join(' / ')}</span>
-    </article>)}</div>
+    <div className="project-timeline">{visibleProjects.map((project, index) => {
+      const ProjectCard = project.live ? 'a' : 'article';
+      const projectLinkProps = project.live ? {href: project.live, target: '_blank', rel: 'noopener noreferrer'} : {};
+
+      return <ProjectCard className="client-project" key={project.id} {...projectLinkProps}>
+        <span className="project-index">{String(index + 1).padStart(2, '0')}</span>
+        <div>
+          <h3>{t(project.category)}{project.live && <><ArrowUpRight size={21} /><span className="sr-only"> — {t('opensInNewTab')}</span></>}</h3>
+          <ProjectStatus project={project} />
+          <p>{t(project.description)}</p>
+        </div>
+        <span className="project-type">{project.live ? t(project.type || 'websiteManagement') : project.stack.map(item => item.name).join(' / ')}</span>
+      </ProjectCard>;
+    })}</div>
   </section>;
 }

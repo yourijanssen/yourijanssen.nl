@@ -21,7 +21,10 @@ export default function Home() {
       <h1>{t('heroTitle')}<br /><span>{t('heroTitleAccent')}</span></h1>
       <p>{t('heroIntro')}</p>
       <div className="hero-actions"><Link className="button button-primary" href="/work">{t('exploreWork')}<ArrowUpRight size={18} /></Link><CVDownload /><Social containerStyles="hero-social-links" iconStyles="hero-social-link" /></div>
-    </div><Photo /></section>
+    </div><div className="hero-visual">
+      <div className="hero-decoration" aria-hidden="true"><span className="hero-mark hero-mark-top" /><span className="hero-mark hero-mark-bottom" /></div>
+      <Photo />
+    </div></section>
     <Stats />
     <WorkPage embedded />
     <ResumePage embedded />
