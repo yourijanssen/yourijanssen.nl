@@ -1,3 +1,5 @@
+import SectionLabel from '../SectionLabel';
+import SectionHeading from '../SectionHeading';
 import {
 	FaHtml5,
 	FaCss3,
@@ -693,7 +695,7 @@ export default function ResumePage({embedded = false}) {
   const {t: translate} = useTranslation('common');
   const Heading = embedded ? 'h2' : 'h1';
   return <section className="section resume-section"><div className="shell">
-    <div className="section-heading"><div><p className="section-label">{translate('resumePageTitle')}</p><Heading>{translate('resumeHeadline')}</Heading></div><p>{translate('resumeIntro')}</p></div>
+    <div className="section-heading"><div><SectionLabel name="resumeSection">{translate('resumePageTitle')}</SectionLabel><SectionHeading as={Heading} name="resumeSection">{translate('resumeHeadline')}</SectionHeading></div><p>{translate('resumeIntro')}</p></div>
     <Tabs defaultValue="experience" className="resume-layout">
       <TabsList className="resume-tabs" aria-label={translate('resumePageTitle')}>
         {['experience', 'education', 'about', 'certifications', 'skills', 'courses'].map((key, index) => <TabsTrigger value={key} key={key} style={{'--tab-rank': index}}><span>{translate(key + 'Tab')}</span><span aria-hidden="true">→</span></TabsTrigger>)}

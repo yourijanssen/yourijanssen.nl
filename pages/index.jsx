@@ -12,10 +12,27 @@ import ServicesPage from '@/components/page-components/ServicesPage';
 import ContactPage from '@/components/page-components/ContactPage';
 import Social from '@/components/Social';
 import TypedIntro from '@/components/TypedIntro';
+import {useEffect} from 'react';
 
 /** Introduces the portfolio with real work and a clear path to contact. */
 export default function Home() {
   const {t} = useTranslation('common');
+  // Reload the introduction at the top, but preserve deliberate links to page sections.
+  useEffect(() => {
+    if (window.location.hash || performance.getEntriesByType('navigation')[0]?.type !== 'reload') return;
+    const previousRestoration = window.history.scrollRestoration;
+    window.history.scrollRestoration = 'manual';
+    /** Restores the initial title position without the site's smooth-scroll animation. */
+    function resetScroll() {
+      window.scrollTo({top: 0, left: 0, behavior: 'instant'});
+    }
+    resetScroll();
+    const frame = requestAnimationFrame(resetScroll);
+    return () => {
+      cancelAnimationFrame(frame);
+      window.history.scrollRestoration = previousRestoration;
+    };
+  }, []);
   return <>
     <Head><title>Youri Janssen | {t('softwareEngineer')}</title><meta name="description" content={t('heroIntro')} /></Head>
     <section className="hero engineer-hero shell"><div className="hero-copy">

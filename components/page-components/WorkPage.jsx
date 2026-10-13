@@ -1,4 +1,6 @@
 import Link from 'next/link';
+import SectionLabel from '../SectionLabel';
+import SectionHeading from '../SectionHeading';
 import {ArrowUpRight} from 'lucide-react';
 import {useTranslation} from 'next-i18next/pages';
 
@@ -136,7 +138,7 @@ export default function WorkPage({embedded = false}) {
   const sortedProjects = sortProjectsByEndDate(projects);
   const visibleProjects = embedded ? sortedProjects.slice(0, 4) : sortedProjects;
   return <section className="section work-section shell">
-    <div className="section-heading"><div><p className="section-label">{t('workPageTitle')}</p><Heading>{t('workHeadline')}</Heading></div>
+    <div className="section-heading"><div><SectionLabel name="workSection">{t('workPageTitle')}</SectionLabel><SectionHeading as={Heading} name="workSection">{t('workHeadline')}</SectionHeading></div>
       {embedded ? <Link className="text-link" href="/work">{t('viewAllProjects')}<ArrowUpRight size={17} /></Link> : <p>{t('workIntro')}</p>}
     </div>
     <div className="project-timeline">{visibleProjects.map((project, index) => {

@@ -23,7 +23,7 @@ export default function MotionEffects() {
     const observed = new WeakSet();
     // Include tab panels added after navigation, without replaying existing sections.
     const observeContent = () => {
-      document.querySelectorAll('.hero-copy, .portrait, .section-heading, .project, .client-project, .service-row, .timeline li, .skill-year, .contact-top, .contact-bottom, [role="tabpanel"]').forEach((element) => {
+      document.querySelectorAll('.portrait, .section-heading, .project, .client-project, .service-row, .timeline li, .skill-year, .contact-top, .contact-bottom, [role="tabpanel"]').forEach((element) => {
         if (!observed.has(element)) {
           observed.add(element);
           observer.observe(element);
