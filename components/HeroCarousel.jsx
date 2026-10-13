@@ -11,6 +11,7 @@ export default function HeroCarousel() {
   const [paused, setPaused] = useState(false);
   const [editing, setEditing] = useState(false);
   const swipeStart = useRef(null);
+  const stageRef = useRef(null);
   const labels = [t('heroPortraitSlide'), t('heroCodeSlide')];
 
   // Restart the selected slide's duration after manual changes; clean up on pause or unmount.
@@ -24,6 +25,24 @@ export default function HeroCarousel() {
   function changeSlide() {
     setSlide(current => 1 - current);
   }
+
+  // Enable arrow navigation while the carousel is visible, without requiring focus.
+  useEffect(() => {
+    /** Leaves native controls and dialogs alone and ignores an off-screen carousel. */
+    function handleCarouselKey(event) {
+      if (event.defaultPrevented || event.altKey || event.ctrlKey || event.metaKey || event.shiftKey || event.repeat) return;
+      if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
+      if (!(event.target instanceof Element) || event.target.closest('textarea, input, select, button, a, [contenteditable]:not([contenteditable="false"]), [role="tablist"], [role="dialog"]')) return;
+      if (document.querySelector('[role="dialog"][data-state="open"], dialog[open]')) return;
+      const bounds = stageRef.current?.getBoundingClientRect();
+      const headerBottom = document.querySelector('.site-header')?.getBoundingClientRect().bottom ?? 0;
+      if (!bounds || Math.min(bounds.bottom, window.innerHeight) - Math.max(bounds.top, headerBottom) < 80) return;
+      event.preventDefault();
+      setSlide(current => 1 - current);
+    }
+    document.addEventListener('keydown', handleCarouselKey);
+    return () => document.removeEventListener('keydown', handleCarouselKey);
+  }, []);
 
   /** Records a single-finger gesture without interfering with controls or native scrolling. */
   function startSwipe(event) {
@@ -62,17 +81,18 @@ export default function HeroCarousel() {
     swipeStart.current = null;
   }
 
+  const playback = <button className="icon-button carousel-playback" type="button" onClick={() => setPaused(current => !current)} aria-label={t(paused ? 'heroResumeCarousel' : 'heroPauseCarousel')}>
+    {paused ? <Play size={14} aria-hidden="true" /> : <Pause size={14} aria-hidden="true" />}
+  </button>;
+
   return <section className="hero-carousel" aria-label={t('heroCarouselLabel')} aria-roledescription={t('heroCarouselDescription')}>
-    <div className="hero-carousel-stage" onTouchStart={startSwipe} onTouchEnd={endSwipe} onTouchCancel={cancelSwipe}
+    <div className="hero-carousel-stage" ref={stageRef} onTouchStart={startSwipe} onTouchEnd={endSwipe} onTouchCancel={cancelSwipe}
       onFocusCapture={event => { if (event.target.matches('textarea')) setEditing(true); }}
       onBlurCapture={event => { if (event.target.matches('textarea')) setEditing(false); }}>
-      <div className="hero-carousel-slide hero-carousel-photo" id="hero-slide-0" role="group" aria-label={labels[0]} hidden={slide !== 0}><Photo /></div>
-      <div className="hero-carousel-slide" id="hero-slide-1" role="group" aria-label={labels[1]} hidden={slide !== 1}><CodeProfile /></div>
+      <div className="hero-carousel-slide hero-carousel-photo" id="hero-slide-0" role="group" aria-label={labels[0]} hidden={slide !== 0}><Photo />{slide === 0 ? playback : null}</div>
+      <div className="hero-carousel-slide" id="hero-slide-1" role="group" aria-label={labels[1]} hidden={slide !== 1}><CodeProfile playback={slide === 1 ? playback : null} /></div>
       <button className="icon-button carousel-arrow carousel-arrow-previous" type="button" onClick={changeSlide} aria-label={t('heroPreviousSlide')}><ChevronLeft size={17} aria-hidden="true" /></button>
       <button className="icon-button carousel-arrow carousel-arrow-next" type="button" onClick={changeSlide} aria-label={t('heroNextSlide')}><ChevronRight size={17} aria-hidden="true" /></button>
-      <button className="icon-button carousel-playback" type="button" onClick={() => setPaused(current => !current)} aria-label={t(paused ? 'heroResumeCarousel' : 'heroPauseCarousel')}>
-        {paused ? <Play size={14} aria-hidden="true" /> : <Pause size={14} aria-hidden="true" />}
-      </button>
     </div>
     <span className="sr-only" aria-live={paused ? 'polite' : 'off'} aria-atomic="true">{labels[slide]} — {slide + 1} / 2</span>
   </section>;

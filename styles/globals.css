@@ -43,6 +43,7 @@ h1, h2, h3, h4 { font-weight: 600; line-height: 1.12; letter-spacing: -.045em; }
 .wordmark { display: inline-flex; align-items: center; gap: 10px; font-family: var(--font-jetbrainsMono); font-size: 26px; font-weight: 750; letter-spacing: -.06em; line-height: 1; }
 .wordmark > svg { color: var(--accent); }
 .wordmark-name { color: var(--ink); }
+.site-header .wordmark-name { text-decoration: underline; text-decoration-color: var(--accent); text-decoration-thickness: 2px; text-underline-offset: 6px; }
 .wordmark-dot { margin-left: -10px; color: var(--accent); }
 .desktop-nav { margin-left: auto; }
 .main-nav { display: flex; align-items: center; gap: 30px; }
@@ -121,6 +122,8 @@ body:has(.engineer-hero) { background-image: linear-gradient(to bottom right, tr
 .editor-highlight::-webkit-scrollbar { display: none; }
 .editor-input { padding-left: 48px; margin: 0; border: 0; border-radius: 0; resize: none; background: transparent; color: transparent; caret-color: var(--ink); -webkit-text-fill-color: transparent; }
 .editor-input::selection { background: var(--accent-soft); }
+.code-editor .editor-input:focus { outline: none; box-shadow: none; }
+.editor-mobile-display { display: none; }
 .editor-line { display: flex; min-height: 25px; }
 .editor-line > span:last-child { white-space: pre; }
 .line-number { width: 48px; flex-shrink: 0; text-align: right; padding-right: 18px; color: var(--muted); user-select: none; }
@@ -135,11 +138,21 @@ body:has(.engineer-hero) { background-image: linear-gradient(to bottom right, tr
 .hero-carousel-stage { position: relative; height: 458px; display: grid; align-items: center; }
 .hero-carousel-slide { min-width: 0; }
 .hero-carousel-slide[hidden] { display: none; }
-.hero-carousel-photo { touch-action: pan-y pinch-zoom; }
+.hero-carousel-photo { position: relative; touch-action: pan-y pinch-zoom; }
+.hero-carousel .code-editor { position: relative; }
 .hero-carousel-photo .portrait { width: min(100%, 380px); margin-inline: auto; }
 .hero-carousel .carousel-arrow { position: absolute; top: 50%; transform: translateY(-50%); width: 34px; height: 34px; background: var(--page); z-index: 2; }
+.hero-carousel .carousel-arrow:focus { outline: none; box-shadow: none; }
+.hero-carousel .carousel-arrow:focus-visible { background: var(--accent-soft); color: var(--accent); }
 .carousel-arrow-previous { left: -17px; }
 .carousel-arrow-next { right: -17px; }
+/* Hide navigation arrows only on small touch devices without a mouse or trackpad. */
+@media (max-width: 700px) and (hover: none) and (pointer: coarse) {
+  .hero-carousel .carousel-arrow { display: none; }
+}
+@media (any-pointer: fine) {
+  .hero-carousel .carousel-arrow { display: grid; }
+}
 .hero-carousel .carousel-playback { position: absolute; right: 8px; bottom: 8px; width: 28px; height: 28px; background: var(--page); z-index: 2; }
 .hero-carousel .editor-status { padding-right: 46px; }
 @media (prefers-reduced-motion: no-preference) {
@@ -295,6 +308,8 @@ details[open] .details-minus { display: block; }
 .skip-link { position: fixed; left: 20px; top: -100px; padding: 12px 20px; background: var(--accent); color: var(--page); z-index: 100; }
 .skip-link:focus { top: 15px; }
 .mobile-drawer { background: var(--page); color: var(--ink); padding: 60px 30px; border-color: var(--line); }
+.mobile-drawer > button:focus { outline: none; box-shadow: none; }
+.mobile-drawer > button:focus-visible { background: var(--accent-soft); border-radius: 4px; }
 .mobile-drawer nav { display: flex; flex-direction: column; margin-top: 50px; }
 .mobile-drawer nav a { display: flex; align-items: center; justify-content: space-between; font-size: 25px; padding: 18px 0; border-bottom: 1px solid var(--line); text-transform: capitalize; }
 .mobile-drawer nav a[aria-current] { color: var(--accent); }
@@ -347,6 +362,15 @@ details[open] .details-minus { display: block; }
   .editor-panel { min-height: 306px; padding-top: 18px; }
   .editor-editable { padding-top: 0; }
   .editor-editable .editor-highlight, .editor-input { font-size: 12px; padding-top: 18px; }
+  /* Mobile is a swipeable read-only display; only the file tabs are interactive. */
+  .editor-desktop-playground { display: none; }
+  .editor-mobile-display { display: block; }
+  .editor-editable { padding: 14px 10px 14px 0; overflow-y: auto; overflow-x: hidden; touch-action: pan-y pinch-zoom; }
+  .editor-panel .editor-mobile-display { font-size: 10px; line-height: 17px; }
+  .editor-mobile-display .editor-line { min-height: 17px; }
+  .editor-mobile-display .editor-line > span:last-child { min-width: 0; white-space: pre-wrap; overflow-wrap: anywhere; }
+  .editor-mobile-display .line-number { width: 28px; padding-right: 8px; }
+  .hero-carousel .carousel-playback, .code-editor .editor-status { display: none; }
   .editor-tabs button { font-size: 11px; padding: 12px 4px; }
   .editor-status { gap: 10px; font-size: 9px; padding-inline: 12px; }
   .line-number { width: 36px; padding-right: 12px; }
@@ -437,6 +461,7 @@ details[open] .details-minus { display: block; }
 }
 @media (hover: hover) and (prefers-reduced-motion: no-preference) {
   .button:hover { box-shadow: 0 8px 24px color-mix(in srgb, var(--accent) 24%, transparent); }
+  .hero-actions .button-secondary:hover { box-shadow: 0 2px 6px color-mix(in srgb, var(--accent) 8%, transparent); transform: translateY(-1px); }
   .icon-button:hover svg { transform: rotate(18deg); }
   /* Each part moves around its own center while the logo's layout box stays unchanged. */
   .wordmark:is(:hover, :focus-visible) > svg { transform: translateX(-2px) rotate(-8deg) scale(1.08); }

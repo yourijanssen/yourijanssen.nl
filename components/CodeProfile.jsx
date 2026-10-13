@@ -32,7 +32,7 @@ function EditableSample({lines, label, hint}) {
 }
 
 /** Presents real portfolio information as accessible, keyboard-operable code tabs. */
-export default function CodeProfile() {
+export default function CodeProfile({playback}) {
   const {t, i18n} = useTranslation('common');
   const [activeFile, setActiveFile] = useState(0);
   const tabRefs = useRef([]);
@@ -89,8 +89,10 @@ export default function CodeProfile() {
       {files.map((file, index) => <button key={file} ref={element => {tabRefs.current[index] = element;}} type="button" role="tab" id={`code-tab-${index}`} aria-controls={`code-panel-${index}`} aria-selected={index === activeFile} tabIndex={index === activeFile ? 0 : -1} onClick={() => setActiveFile(index)} onKeyDown={event => handleTabKey(event, index)}><FileCode2 size={14} aria-hidden="true" />{file}</button>)}
     </div>
     {samples.map((lines, index) => <div key={files[index]} role="tabpanel" id={`code-panel-${index}`} aria-labelledby={`code-tab-${index}`} hidden={index !== activeFile} className="editor-panel editor-editable">
-      <EditableSample key={`${files[index]}:${i18n.language}`} lines={lines} label={t('codeEditLabel', {file: files[index]})} hint={t('codeEditHint')} />
+      <div className="editor-desktop-playground"><EditableSample key={`${files[index]}:${i18n.language}`} lines={lines} label={t('codeEditLabel', {file: files[index]})} hint={t('codeEditHint')} /></div>
+      <pre className="editor-mobile-display"><code>{lines.map((line, number) => <span className="editor-line" key={number}><span className="line-number" aria-hidden="true">{number + 1}</span><span><CodeLine text={line || ' '} />{'\n'}</span></span>)}</code></pre>
     </div>)}
     <div className="editor-status"><span>{activeFile === 1 ? 'JSON' : 'TypeScript'}</span><span>UTF-8</span><Link href={activeFile === 2 ? '/work' : '/resume'}>{t(activeFile === 2 ? 'viewAllProjects' : 'codeViewProfile')}<ArrowUpRight size={12} aria-hidden="true" /></Link></div>
+    {playback}
   </div>;
 }
