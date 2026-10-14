@@ -1,5 +1,7 @@
 import SectionLabel from '../SectionLabel';
 import SectionHeading from '../SectionHeading';
+import {useMemo} from 'react';
+import {createSection} from '@/lib/section.mjs';
 import {
 	FaHtml5,
 	FaCss3,
@@ -694,8 +696,10 @@ import {useTranslation} from "next-i18next/pages";
 export default function ResumePage({embedded = false}) {
   const {t: translate} = useTranslation('common');
   const Heading = embedded ? 'h2' : 'h1';
+  const label = translate('resumePageTitle');
+  const resumeSection = useMemo(() => createSection(label), [label]);
   return <section className="section resume-section"><div className="shell">
-    <div className="section-heading"><div><SectionLabel name="resumeSection">{translate('resumePageTitle')}</SectionLabel><SectionHeading as={Heading} name="resumeSection">{translate('resumeHeadline')}</SectionHeading></div><p>{translate('resumeIntro')}</p></div>
+    <div className="section-heading"><div><SectionLabel name="resumeSection" section={resumeSection} /><SectionHeading as={Heading} name="resumeSection" section={resumeSection}>{translate('resumeHeadline')}</SectionHeading></div><p>{translate('resumeIntro')}</p></div>
     <Tabs defaultValue="experience" className="resume-layout">
       <TabsList className="resume-tabs" aria-label={translate('resumePageTitle')}>
         {['experience', 'education', 'about', 'certifications', 'skills', 'courses'].map((key, index) => <TabsTrigger value={key} key={key} style={{'--tab-rank': index}}><span>{translate(key + 'Tab')}</span><span aria-hidden="true">→</span></TabsTrigger>)}

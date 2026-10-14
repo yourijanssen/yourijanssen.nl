@@ -1,6 +1,8 @@
 import Link from 'next/link';
 import SectionLabel from '../SectionLabel';
 import SectionHeading from '../SectionHeading';
+import {useMemo} from 'react';
+import {createSection} from '@/lib/section.mjs';
 import {ArrowUpRight} from 'lucide-react';
 import {useTranslation} from 'next-i18next/pages';
 
@@ -135,10 +137,12 @@ function ProjectStatus({project}) {
 export default function WorkPage({embedded = false}) {
   const {t} = useTranslation('common');
   const Heading = embedded ? 'h2' : 'h1';
+  const label = t('workPageTitle');
+  const workSection = useMemo(() => createSection(label), [label]);
   const sortedProjects = sortProjectsByEndDate(projects);
   const visibleProjects = embedded ? sortedProjects.slice(0, 4) : sortedProjects;
   return <section className="section work-section shell">
-    <div className="section-heading"><div><SectionLabel name="workSection">{t('workPageTitle')}</SectionLabel><SectionHeading as={Heading} name="workSection">{t('workHeadline')}</SectionHeading></div>
+    <div className="section-heading"><div><SectionLabel name="workSection" section={workSection} /><SectionHeading as={Heading} name="workSection" section={workSection}>{t('workHeadline')}</SectionHeading></div>
       {embedded ? <Link className="text-link" href="/work">{t('viewAllProjects')}<ArrowUpRight size={17} /></Link> : <p>{t('workIntro')}</p>}
     </div>
     <div className="project-timeline">{visibleProjects.map((project, index) => {

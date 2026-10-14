@@ -92,7 +92,6 @@ export default function CodeProfile({playback}) {
       <div className="editor-desktop-playground"><EditableSample key={`${files[index]}:${i18n.language}`} lines={lines} label={t('codeEditLabel', {file: files[index]})} hint={t('codeEditHint')} /></div>
       <pre className="editor-mobile-display"><code>{lines.map((line, number) => <span className="editor-line" key={number}><span className="line-number" aria-hidden="true">{number + 1}</span><span><CodeLine text={line || ' '} />{'\n'}</span></span>)}</code></pre>
     </div>)}
-    <div className="editor-status"><span>{activeFile === 1 ? 'JSON' : 'TypeScript'}</span><span>UTF-8</span><Link href={activeFile === 2 ? '/work' : '/resume'}>{t(activeFile === 2 ? 'viewAllProjects' : 'codeViewProfile')}<ArrowUpRight size={12} aria-hidden="true" /></Link></div>
-    {playback}
+    <div className="editor-status"><span>{activeFile === 1 ? 'JSON' : 'TypeScript'}</span><span>UTF-8</span><Link href={activeFile === 2 ? '/work' : '/resume'}>{t(activeFile === 2 ? 'viewAllProjects' : 'codeViewProfile')}<ArrowUpRight size={12} aria-hidden="true" /></Link>{playback}</div>
   </div>;
 }
